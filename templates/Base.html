@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='python.png') }}" type="image/x-icon" sizes="32x32">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='python.png') }}" type="image/x-icon" sizes="32x32">
+
 </head>
 <body>
 <header>
@@ -16,17 +19,26 @@
         </ul>
     </nav>
 </header>
-
+{% block content %}{% endblock %}
 <footer class="footer">
     <nav class="footer_links">
         <ul>
-            <li><a href="https://github.com/Iamhuzaifasabahuddin">GitHub</a></li>
-            <li><a href="mailto:huzaifasabah@gmail.com">Email</a></li>
+            <li><a href="https://github.com/Iamhuzaifasabahuddin">
+                <img src="{{ url_for('static', filename='images/github.png') }}" alt="GitHub">
+            </a></li>
+            <li><a href="mailto:huzaifasabah@gmail.com">
+                <img src="{{ url_for('static', filename='images/Email.png') }}" alt="Email">
+            </a></li>
+            <li><a href="https://www.linkedin.com/in/huzaifa-sabah-uddin/">
+                <img src="{{ url_for('static', filename='images/Linkedin.png') }}" alt="Linked in">
+            </a></li>
         </ul>
     </nav>
-    <h2 class="Made_from">Created using flask</h2>
+    <h2 class="Made_from">
+        Created By <span>HEXZ</span>
+    </h2>
 </footer>
-{% block content %}{% endblock %}
+
 
 </body>
 </html>

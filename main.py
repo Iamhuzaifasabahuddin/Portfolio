@@ -52,6 +52,7 @@ def contact():
     except TemplateNotFound:
         return redirect(url_for('home'))
 
+
 @app.errorhandler(404)
 def page_not_found(error):
     return redirect(url_for('home'))

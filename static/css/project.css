@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #24252A;
+    background-color: #ECECEC;
     font-family: "Helvetica Neue", Helvetica, Arial;
 
 }
@@ -19,7 +19,7 @@ li, a {
 }
 
 header {
-    background-color: #24252A;
+    background-color: #000000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,7 @@ header {
 .Header-name {
     cursor: pointer;
     font-size: 25px;
-    color: #fff222;
+    color: #edf0f1;
     font-style: italic;
 }
 
@@ -57,13 +57,13 @@ header {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #24252A;
+    background-color: #000000;
     color: #edf0f1;
     text-align: center;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
-    padding: 10px 5%;
+    padding: 5px 2%;
 }
 
 .footer_links ul{
@@ -72,7 +72,7 @@ header {
 }
 .footer_links li{
     display: inline-block;
-    margin-right: 15px
+    margin-right: 20px
 }
 .footer_links li a {
     transition: all 0.5s ease 0s;
@@ -82,35 +82,90 @@ header {
     font-weight: bold;
 }
 
+.footer_links ul li a img {
+    width: 30px;
+    height: auto;
+}
 
-/* about page */
+.Made_from {
+    font-size: 30px;
+    margin-right: 10px;
+    align-items: center;
+    font-weight: bold;
+    font-style: italic;
+}
+.Made_from span{
+   color: #FFDB0F;
+}
+
+
+/* Home page */
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: 100vh;
+    margin: 2.5%;
+}
+
+.centered-content h1 {
+    font-size: 50px;
+    color: #000000;
+    font-style: italic;
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    margin: 0 20px;
+    width: 50px;
+    height: auto;
+}
+
+
+/* About page */
 
 .main {
   margin: 0 auto;
 }
 
 .main--about {
-  margin-top: 5%;
+  margin: 2.5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
   padding: 0 1rem;
-  padding-left: 10%; /* Add padding to the left */
   line-height: 150%;
-  color: #edf0f1;
-  width: 80%;
+  color: #000000;
+  width: 85%;
+  height: 100vh;
 }
 
-
-.mainheading {
+.section-heading {
   text-align: left;
-  width: 100%;
   font-style: italic;
+  padding-bottom: 10px;
+}
+
+ul.Skills {
+    color: #000000;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+ul.Skills li {
+    color: #000000;
 }
 
 p {
-font-size: 25px;
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 
 /* Tech Stack */
@@ -119,9 +174,5 @@ font-size: 25px;
     flex-wrap: wrap;
     gap: 20px;
     align-items: center;
+    padding-bottom: 10px;
 }
-
-.tech-stack img {
-    margin-bottom: 10px;
-}
-

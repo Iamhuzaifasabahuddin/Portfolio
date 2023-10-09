@@ -3,7 +3,18 @@
 
 <title>Home</title>
 
-<h1 class="Homepage homepage--heading">Welcome to My Portfolio</h1>
-
+<div class="container">
+    <div class="centered-content">
+        <h1 class="Homepage homepage--heading">Welcome to My Portfolio</h1>
+        <br/>
+        <p>
+            This is my personal portfolio page powered by:
+        </p>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/python.png') }}" alt="Python">
+            <img src="{{ url_for('static', filename='images/flask.png') }}" alt="Flask">
+        </div>
+    </div>
+</div>
 
 {% endblock %}
