@@ -123,7 +123,7 @@ header {
 .centered-content {
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 2.5%;
@@ -176,6 +176,44 @@ header {
 font-weight: bold;
 }
 
+.Highlights {
+    padding-top: 20px;
+}
+
+.Highlights h2 {
+    padding-bottom: 20px;
+}
+
+ul.projects {
+    color: #000000;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+ul.projects li {
+    list-style: numeric;
+}
+
+ul.projects li {
+    color: #000000;
+}
+
+ul.projects li a{
+      color: #000000;
+}
+
+ul.projects li a {
+    transition: all 0.5s ease 0s;
+}
+ul.projects li a:hover{
+     color: #0066ff;
+     font-weight: bold;
+}
 
 /* About page */
 
@@ -237,8 +275,27 @@ font-weight: bold;
 }
 
 /* Adjust the footer for smaller screens */
-@media (max-width: 1800px) {
+@media (max-width: 600px) {
   .main--about {
     padding-bottom: 50px;
   }
+  .centered-content {
+    padding-bottom: 50px;
+  }
+  .Highlights {
+    padding-bottom: 50px;
+  }
+
 }
+
+@media (max-width: 1000px) {
+  .main--about {
+    padding-bottom: 50px;
+  }
+  .centered-content {
+    padding-bottom: 50px;
+  }
+}
+
+
+
