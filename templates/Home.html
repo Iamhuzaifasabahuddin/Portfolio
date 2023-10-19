@@ -5,8 +5,9 @@
 
 <div class="container">
     <div class="centered-content">
-        <h1 class="Homepage homepage--heading">Welcome to My Portfolio</h1>
+        <h1 class="Homepage homepage--heading">Greetings & Welcome to My Portfolio 👋🏼</h1>
         <div class="Main-logo">
+            <h1></h1>
             <img src="{{ url_for('static', filename='images/HSLOGO.png') }}" alt="HS">
         </div>
         <br/>
@@ -24,17 +25,17 @@
         <br/>
         <p>
             Hello, I'm <span>Huzaifa Sabah Uddin</span>, though you can simply call me Hexz. I'm truly passionate about coding, as it offers a unique platform for creativity, invention, and automation. For me, the world of programming is a canvas where I can craft solutions to real-world challenges and bring ideas to life. I have a particular fondness for Python and its diverse frameworks, appreciating their power and versatility. Currently, I'm a dedicated second-year student pursuing a Bachelor of Science in Software Engineering at the <span>University of Leicester</span>. I'm excited to be on this journey of continuous learning and innovation as I explore the ever-evolving landscape of technology and software development.
+            <a href="{{ url_for('about')}}">MORE ABOUT ME</a>
         </p>
 
-        <div class="Highlights">
-            <h2>Project Highlights</h2>
+         <div class="Highlights">
+            <h2 class="highlights-heading">Project Highlights</h2>
             <ul class="projects">
                 <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/ExpenseGUI.py" target="_blank">Expense manager</a></li>
                 <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/PasswordmanGUI.py" target="_blank">Password manager</a></li>
                 <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/WeatherGUI.py" target="_blank">Weather GUI</a></li>
-                <li><a href="{{ url_for('project') }}">MORE PROJECTS</a></li>
+                <li><span><a href="{{ url_for('project') }}">MORE PROJECTS</a></span></li>
             </ul>
-
         </div>
     </div>
 </div>

@@ -36,7 +36,7 @@ def project():
         Elements of the project page
     """
     try:
-        return render_template('Project.html')
+        return render_template('Projects.html')
     except TemplateNotFound:
         return redirect(url_for('home'))
 
