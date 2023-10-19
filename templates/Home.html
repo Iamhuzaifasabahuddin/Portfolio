@@ -14,8 +14,12 @@
             This is my personal portfolio page powered by:
         </h2>
         <div class="image-container">
-            <img src="{{ url_for('static', filename='images/python.png') }}" alt="Python">
-            <img src="{{ url_for('static', filename='images/flask.png') }}" alt="Flask">
+            <a href="https://www.python.org/" target="_blank">
+                <img src="{{ url_for('static', filename='images/python.png') }}" alt="Python"></a>
+            <a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">
+                <img src="{{ url_for('static', filename='images/flask.png') }}" alt="Flask"></a>
+            <a href="https://railway.app/dashboard" target="_blank">
+                <img src="{{ url_for('static', filename='images/railway.png') }}" alt="Flask"></a>
         </div>
         <br/>
         <p>
@@ -27,10 +31,8 @@
             <ul class="projects">
                 <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/ExpenseGUI.py" target="_blank">Expense manager</a></li>
                 <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/PasswordmanGUI.py" target="_blank">Password manager</a></li>
-                <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/PasswordmanGUI.py" target="_blank">Password manager</a></li>
-                <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/PasswordmanGUI.py" target="_blank">Password manager</a></li>
-                <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/PasswordmanGUI.py" target="_blank">Password manager</a></li>
-
+                <li><a href="https://github.com/Iamhuzaifasabahuddin/Python-Personal-Projects/blob/main/WeatherGUI.py" target="_blank">Weather GUI</a></li>
+                <li><a href="{{ url_for('project') }}">MORE PROJECTS</a></li>
             </ul>
 
         </div>

@@ -195,7 +195,7 @@ ul.projects {
 }
 
 ul.projects li {
-    list-style: numeric;
+    list-style: none;
 }
 
 ul.projects li {
@@ -300,5 +300,35 @@ font-weight: bold;
 
 }
 
+
+@media (max-width: 250px) {
+  .main--about {
+    padding-bottom: 70px;
+  }
+  .centered-content {
+    padding-bottom: 70px;
+  }
+  .Highlights {
+    padding-bottom: 70px;
+  }
+  .footer_links ul li a img {
+    width: 15px;
+    height: auto;
+  }
+
+  .logo img {
+    margin: 0px;
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+  }
+  .Made_from {
+    font-size: 10px;
+    align-items: center;
+    font-weight: bold;
+    font-style: italic;
+    padding-right: 15px;
+  }
+}
 
 
