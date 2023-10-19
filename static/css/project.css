@@ -312,18 +312,18 @@ font-weight: bold;
     padding-bottom: 70px;
   }
   .footer_links ul li a img {
-    width: 15px;
+    width: 10px;
     height: auto;
   }
 
   .logo img {
     margin: 0px;
-    width: 20px;
+    width: 10px;
     height: auto;
     cursor: pointer;
   }
   .Made_from {
-    font-size: 10px;
+    font-size: 8px;
     align-items: center;
     font-weight: bold;
     font-style: italic;
