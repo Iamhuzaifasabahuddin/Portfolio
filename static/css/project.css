@@ -301,16 +301,14 @@ font-weight: bold;
 }
 
 
+/* Adjust the footer for smaller screens */
 @media (max-width: 250px) {
-  .main--about {
-    padding-bottom: 70px;
-  }
-  .centered-content {
-    padding-bottom: 70px;
-  }
+  .main--about,
+  .centered-content,
   .Highlights {
     padding-bottom: 70px;
   }
+
   .footer_links ul li a img {
     width: 10px;
     height: auto;
@@ -322,9 +320,10 @@ font-weight: bold;
     height: auto;
     cursor: pointer;
   }
+
   .Made_from {
     font-size: 8px;
-    align-items: center;
+    text-align: center; /* This should be text-align: center; */
     font-weight: bold;
     font-style: italic;
     padding-right: 15px;
