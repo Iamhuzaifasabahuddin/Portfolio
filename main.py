@@ -2,7 +2,7 @@ import json
 import random
 
 import requests
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from jinja2 import TemplateNotFound
 
 app = Flask(__name__)
@@ -51,6 +51,22 @@ def contact():
         return render_template('Contact.html')
     except TemplateNotFound:
         return redirect(url_for('home'))
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    """Handles form submission."""
+    try:
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        country_code = request.form['country-code']
+        phone = request.form['phone']
+        full_phone = '+' + country_code + phone
+        return "Thanks for contacting me, " + name + "!"
+    except Exception as e:
+
+        return "An error occurred while processing the form: " + str(e)
 
 
 @app.errorhandler(404)

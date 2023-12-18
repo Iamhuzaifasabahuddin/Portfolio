@@ -31,6 +31,7 @@ header {
     font-size: 25px;
     color: #edf0f1;
     font-style: italic;
+    font-family: "Open Sans", "Helvetica Neue";
 }
 
 .nav_links ul {
@@ -328,6 +329,67 @@ font-weight: bold;
      color: #0066ff;
      font-weight: bold;
 }
+
+/* Contact me */
+
+/* Style for the Contact Me section */
+.Contact-me {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+}
+
+/* Style for the form */
+.Contact-me form {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #000; /* Black border for the form */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Style for labels */
+.Contact-me label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: "Open Sans", "Helvetica Neue";
+    font-style: italic;
+}
+
+/* Style for the heading */
+.Contact-me h1 {
+  text-align: center;
+  padding-top: 50px;
+  font-style: italic;
+}
+
+/* Style for inputs */
+.Contact-me input,
+.Contact-me textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 2px solid #000; /
+}
+
+/* Style for the Submit button */
+.Contact-me input[type="submit"] {
+    background-color: #ffff00;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.Contact-me input[type="submit"]:hover {
+    background-color: #ffff33;
+}
+
 /* Adjust the footer for smaller screens */
 @media (max-width: 600px) {
   .main--about {
@@ -343,6 +405,9 @@ font-weight: bold;
     padding-bottom: 100px;
   }
 
+  .Contact-me{
+    padding-bottom: 100px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -358,8 +423,11 @@ font-weight: bold;
   .projects_container{
     padding-bottom: 100px;
   }
-
+  .Contact-me{
+    padding-bottom: 100px;
+  }
 }
+
 
 
 /* Adjust the footer for smaller screens */
@@ -393,6 +461,10 @@ font-weight: bold;
   .projects_container{
     padding-bottom: 70px;
   }
+  .Contact-me{
+    padding-bottom: 100px;
+  }
+
 }
 
 
