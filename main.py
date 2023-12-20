@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 import requests
 from flask import Flask, render_template, redirect, url_for, request
 from jinja2 import TemplateNotFound
+import pymysql
+
+pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -82,6 +85,7 @@ def submit():
         return render_template('Response.html', generated="Thanks for contacting me, " + name.capitalize() + "!")
     except Exception as e:
         return render_template('Response.html', generated="An error occurred while processing the form: " + str(e))
+
 
 @app.errorhandler(404)
 def page_not_found(error):
