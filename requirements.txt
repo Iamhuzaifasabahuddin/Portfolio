@@ -3,3 +3,5 @@ Flask_MySQLdb==2.0.0
 Jinja2==3.1.2
 python-dotenv==1.0.0
 Requests==2.31.0
+pip >= 23.3.2
+gunicorn>= 21.2.0
