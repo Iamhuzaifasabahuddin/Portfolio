@@ -2,8 +2,6 @@ import datetime
 import json
 import os
 import random
-from urllib.parse import urlparse
-
 from dotenv import load_dotenv
 import requests
 from flask import Flask, render_template, redirect, url_for, request
@@ -11,7 +9,7 @@ from jinja2 import TemplateNotFound
 import pymysql
 
 pymysql.install_as_MySQLdb()
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 # load_dotenv('databaseinfo.env')
@@ -22,11 +20,9 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
 # app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:bCbf4-d3c2Gch3H5d63dgadf5fFbF1cG@roundhouse.proxy.rlwy.net:21878/railway'
 
-url = urlparse('mysql://root:bCbf4-d3c2Gch3H5d63dgadf5fFbF1cG@roundhouse.proxy.rlwy.net:21878/railway')
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{url.username}:{url.password}@{url.hostname}:{url.port}/{url.path[1:]}"
-
-database = MySQL(app)
+database = SQLAlchemy(app)
 
 
 @app.route('/')
@@ -73,6 +69,14 @@ def contact():
     except TemplateNotFound:
         return redirect(url_for('home'))
 
+class Form(database.Model):
+   id = database.Column(database.Integer, primary_key=True)
+   name = database.Column(database.String(100), nullable=False)
+   email = database.Column(database.String(100), nullable=False)
+   message = database.Column(database.Text, nullable=False)
+   phone = database.Column(database.String(20), nullable=False)
+   date = database.Column(database.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -84,11 +88,14 @@ def submit():
         country_code = request.form['country-code']
         phone = request.form['phone']
         full_phone = '+' + country_code + phone
-        cur = database.connection.cursor()
-        cur.execute("INSERT INTO form (name, email, message, phone, date) VALUES (%s, %s, %s, %s, %s)",
-                    (name, email, message, full_phone, datetime.datetime.now()))
-        database.connection.commit()
-        cur.close()
+        # cur = database.connection.cursor()
+        # cur.execute("INSERT INTO form (name, email, message, phone, date) VALUES (%s, %s, %s, %s, %s)",
+        #             (name, email, message, full_phone, datetime.datetime.now()))
+        # database.connection.commit()
+        # cur.close()
+        new_form = Form(name=name, email=email, message=message, phone=full_phone)
+        database.session.add(new_form)
+        database.session.commit()
         return render_template('Response.html', generated="Thanks for contacting me, " + name.capitalize() + "!")
     except Exception as e:
         return render_template('Response.html', generated="An error occurred while processing the form: " + str(e))
