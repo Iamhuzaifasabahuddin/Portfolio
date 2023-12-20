@@ -70,7 +70,7 @@ def contact():
         return redirect(url_for('home'))
 
 class Form(database.Model):
-   id = database.Column(database.Integer, primary_key=True)
+   id = database.Column(database.Integer, primary_key=True, autoincrement=True, nullable=False)
    name = database.Column(database.String(100), nullable=False)
    email = database.Column(database.String(100), nullable=False)
    message = database.Column(database.Text, nullable=False)
