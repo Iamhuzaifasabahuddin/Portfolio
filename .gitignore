@@ -165,3 +165,5 @@ pip-selfcheck.json
 /.idea/Portfolio.iml
 /.idea/vcs.xml
 /.idea/dbnavigator.xml
+
+databaseinfo.env

@@ -1,11 +1,21 @@
+import datetime
 import json
+import os
 import random
-
+from dotenv import load_dotenv
 import requests
 from flask import Flask, render_template, redirect, url_for, request
 from jinja2 import TemplateNotFound
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
+load_dotenv('databaseinfo.env')
+app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
+app.config['MYSQL_USER'] = os.environ.get('DB_USER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('DB_PASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
+
+database = MySQL(app)
 
 
 @app.route('/')
@@ -63,6 +73,11 @@ def submit():
         country_code = request.form['country-code']
         phone = request.form['phone']
         full_phone = '+' + country_code + phone
+        cur = database.connection.cursor()
+        cur.execute("INSERT INTO form (name, email, message, phone, date) VALUES (%s, %s, %s, %s, %s)",
+                    (name, email, message, full_phone, datetime.datetime.now()))
+        database.connection.commit()
+        cur.close()
         return "Thanks for contacting me, " + name + "!"
     except Exception as e:
 
