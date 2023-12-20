@@ -78,11 +78,9 @@ def submit():
                     (name, email, message, full_phone, datetime.datetime.now()))
         database.connection.commit()
         cur.close()
-        return "Thanks for contacting me, " + name + "!"
+        return render_template('Response.html', generated="Thanks for contacting me, " + name.capitalize() + "!")
     except Exception as e:
-
-        return "An error occurred while processing the form: " + str(e)
-
+        return render_template('Response.html', generated="An error occurred while processing the form: " + str(e))
 
 @app.errorhandler(404)
 def page_not_found(error):
