@@ -12,9 +12,10 @@ app = Flask(__name__)
 load_dotenv('databaseinfo.env')
 app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
 app.config['MYSQL_USER'] = os.environ.get('DB_USER')
+app.config['MYSQL_PORT'] = os.environ.get('DB_PORT')
 app.config['MYSQL_PASSWORD'] = os.environ.get('DB_PASSWORD')
 app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
-
+app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 database = MySQL(app)
 
 
