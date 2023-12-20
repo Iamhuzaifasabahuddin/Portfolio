@@ -2,6 +2,8 @@ import datetime
 import json
 import os
 import random
+from urllib.parse import urlparse
+
 from dotenv import load_dotenv
 import requests
 from flask import Flask, render_template, redirect, url_for, request
@@ -12,13 +14,18 @@ pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-load_dotenv('databaseinfo.env')
-app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
-app.config['MYSQL_USER'] = os.environ.get('DB_USER')
-app.config['MYSQL_PORT'] = os.environ.get('DB_PORT')
-app.config['MYSQL_PASSWORD'] = os.environ.get('DB_PASSWORD')
-app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
-app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
+# load_dotenv('databaseinfo.env')
+# app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
+# app.config['MYSQL_USER'] = os.environ.get('DB_USER')
+# app.config['MYSQL_PORT'] = os.environ.get('DB_PORT')
+# app.config['MYSQL_PASSWORD'] = os.environ.get('DB_PASSWORD')
+# app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
+# app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
+
+
+url = urlparse('mysql://root:bCbf4-d3c2Gch3H5d63dgadf5fFbF1cG@roundhouse.proxy.rlwy.net:21878/railway')
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{url.username}:{url.password}@{url.hostname}:{url.port}/{url.path[1:]}"
+
 database = MySQL(app)
 
 
