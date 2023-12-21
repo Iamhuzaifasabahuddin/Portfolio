@@ -182,6 +182,13 @@ font-weight: bold;
     color: #000000;
     font-weight: bold;
 }
+.centered-content p a{
+    transition: all 0.5s ease 0s;
+}
+.centered-content p a:hover{
+     color: #0066ff;
+     font-weight: bold;
+}
 .Highlights {
     padding-top: 20px;
 }
@@ -320,6 +327,10 @@ font-weight: bold;
 }
 .projects_container a {
     color: #000000;
+}
+.Head {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .projects_container  a {

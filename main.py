@@ -11,7 +11,7 @@ import pymysql
 
 pymysql.install_as_MySQLdb()
 app = Flask(__name__)
-# load_dotenv('databaseinfo.env')
+load_dotenv('databaseinfo.env')
 # app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
 # app.config['MYSQL_USER'] = os.environ.get('DB_USER')
 # app.config['MYSQL_PORT'] = os.environ.get('DB_PORT')
@@ -20,7 +20,6 @@ app = Flask(__name__)
 # app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'{os.environ["LINK"]}'
-
 
 database = SQLAlchemy(app)
 
@@ -69,13 +68,14 @@ def contact():
     except TemplateNotFound:
         return redirect(url_for('home'))
 
+
 class Form(database.Model):
-   id = database.Column(database.Integer, primary_key=True, autoincrement=True, nullable=False)
-   name = database.Column(database.String(100), nullable=False)
-   email = database.Column(database.String(100), nullable=False)
-   message = database.Column(database.Text, nullable=False)
-   phone = database.Column(database.String(20), nullable=False)
-   date = database.Column(database.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    id = database.Column(database.Integer, primary_key=True, autoincrement=True, nullable=False)
+    name = database.Column(database.String(100), nullable=False)
+    email = database.Column(database.String(100), nullable=False)
+    message = database.Column(database.Text, nullable=False)
+    phone = database.Column(database.String(20), nullable=False)
+    date = database.Column(database.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
 
 @app.route('/submit', methods=['POST'])
