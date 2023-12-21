@@ -11,6 +11,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 from flask_sqlalchemy import SQLAlchemy
 
+# load_dotenv('databaseinfo.env')
 app = Flask(__name__)
 # load_dotenv('databaseinfo.env')
 # app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
@@ -20,7 +21,8 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
 # app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:bCbf4-d3c2Gch3H5d63dgadf5fFbF1cG@roundhouse.proxy.rlwy.net:21878/railway'
+app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}:{os.environ.get("DB_PORT")}/{os.environ.get("DB_DATABASE")}'
+
 
 database = SQLAlchemy(app)
 
