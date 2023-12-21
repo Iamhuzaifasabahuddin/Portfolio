@@ -7,7 +7,9 @@ import requests
 from flask import Flask, render_template, redirect, url_for, request
 from jinja2 import TemplateNotFound
 from flask_sqlalchemy import SQLAlchemy
+import pymysql
 
+pymysql.install_as_MySQLdb()
 app = Flask(__name__)
 # load_dotenv('databaseinfo.env')
 # app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
