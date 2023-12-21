@@ -6,14 +6,10 @@ from dotenv import load_dotenv
 import requests
 from flask import Flask, render_template, redirect, url_for, request
 from jinja2 import TemplateNotFound
-import pymysql
-
-pymysql.install_as_MySQLdb()
 from flask_sqlalchemy import SQLAlchemy
 
-# load_dotenv('databaseinfo.env')
 app = Flask(__name__)
-# load_dotenv('databaseinfo.env')
+load_dotenv('databaseinfo.env')
 # app.config['MYSQL_HOST'] = os.environ.get('DB_HOST')
 # app.config['MYSQL_USER'] = os.environ.get('DB_USER')
 # app.config['MYSQL_PORT'] = os.environ.get('DB_PORT')
@@ -21,8 +17,7 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
 # app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}:{int(os.environ.get("DB_PORT"))}/{os.environ.get("DB_DATABASE")}'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = f'{os.environ.get('LINK')}'
 
 database = SQLAlchemy(app)
 
