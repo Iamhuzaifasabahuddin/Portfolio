@@ -17,7 +17,8 @@ load_dotenv('databaseinfo.env')
 # app.config['MYSQL_DB'] = os.environ.get('DB_DATABASE')
 # app.config['MYSQL_PORT'] = int(os.environ.get('DB_PORT'))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'{os.environ.get('LINK')}'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'{os.environ["LINK"]}'
+
 
 database = SQLAlchemy(app)
 
