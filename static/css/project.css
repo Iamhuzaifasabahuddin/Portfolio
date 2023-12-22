@@ -341,6 +341,7 @@ font-weight: bold;
 .projects_container a:hover{
      color: #0066ff;
      font-weight: bold;
+     text-decoration: underline;
 }
 
 /* Contact me */
