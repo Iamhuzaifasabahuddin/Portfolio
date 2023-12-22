@@ -152,7 +152,7 @@ header {
 
 .Main-logo img{
     margin: 0 20px;
-    width: 80px;
+    width: 100px;
     height: auto;
 }
 .Main-logo img:hover{
@@ -188,6 +188,7 @@ font-weight: bold;
 .centered-content p a:hover{
      color: #0066ff;
      font-weight: bold;
+     text-decoration: underline;
 }
 .Highlights {
     padding-top: 20px;
@@ -236,6 +237,7 @@ ul.projects li a {
 ul.projects li a:hover{
      color: #0066ff;
      font-weight: bold;
+     text-decoration: underline;
 }
 
 /* About page */
