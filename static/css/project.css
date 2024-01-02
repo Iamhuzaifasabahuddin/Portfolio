@@ -389,7 +389,7 @@ font-weight: bold;
     padding: 8px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    border: 2px solid #000; /
+    border: 2px solid #000;
 }
 
 /* Style for the Submit button */
@@ -477,7 +477,7 @@ font-weight: bold;
     padding-bottom: 70px;
   }
   .Contact-me{
-    padding-bottom: 100px;
+    padding-bottom: 150px;
   }
 
 }
