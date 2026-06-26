@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper Wings Café — Silver Street, Leicester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper:   #F8F5EF;
+      --rice:    #EDE9E0;
+      --matcha:  #2D4A3E;
+      --sage:    #7A9E8E;
+      --ink:     #1A1A1A;
+      --blush:   #D4A89A;
+      --muted:   #9A9188;
+      --white:   #FDFCF9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3.5rem;
+      background: rgba(253, 252, 249, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(26,26,26,0.06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--matcha); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 5vw;
+      gap: 4rem;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      padding-left: 2vw;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--matcha);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: var(--matcha);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #213a30;
+      transform: translateY(-1px);
+    }
+
+    .btn-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(26,26,26,0.2);
+      padding-bottom: 2px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .btn-link:hover { color: var(--matcha); border-color: var(--matcha); }
+
+    /* ── CRANE ANIMATION ── */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .crane-container {
+      position: relative;
+      width: min(480px, 42vw);
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Large background circle */
+    .crane-circle {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background: var(--rice);
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .crane-svg {
+      position: relative;
+      z-index: 2;
+      width: 55%;
+      animation: floatCrane 5s ease-in-out infinite;
+      filter: drop-shadow(0 8px 24px rgba(45,74,62,0.12));
+    }
+
+    @keyframes floatCrane {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    /* Small floating dots */
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--sage);
+      opacity: 0.4;
+      animation: floatDot var(--dur, 4s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes floatDot {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(-8px); opacity: 0.2; }
+    }
+
+    /* Scattered coffee-bean shapes */
+    .bean {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--blush);
+      opacity: 0.3;
+      animation: floatDot var(--dur, 5s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--matcha);
+      padding: 0.75rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 4rem;
+      animation: ticker 22s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .ticker-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 8rem 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 8rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-nums {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .about-num-item {
+      border-top: 1px solid rgba(26,26,26,0.1);
+      padding-top: 1.5rem;
+    }
+
+    .about-num-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--matcha);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-num-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .about-text {}
+
+    .section-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+
+    .section-body {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    /* ── MENU ── */
+    .menu-section {
+      background: var(--paper);
+      padding: 8rem 5vw;
+    }
+
+    .menu-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .menu-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 5rem;
+      gap: 2rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(26,26,26,0.08);
+    }
+
+    .menu-card {
+      background: var(--paper);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+
+    .menu-card:hover { background: var(--white); }
+
+    .menu-card-tag {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.8rem;
+    }
+
+    .menu-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .menu-card p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .menu-card-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 60px;
+      height: 60px;
+      background: var(--matcha);
+      opacity: 0;
+      transition: opacity 0.4s;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .menu-card:hover .menu-card-accent { opacity: 0.08; }
+
+    /* ── BREW SECTION ── */
+    .brew-section {
+      padding: 8rem 5vw;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    .brew-visual {
+      position: relative;
+    }
+
+    .pour-over-graphic {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .brew-badges {
+      position: absolute;
+      bottom: -1rem;
+      right: -2rem;
+      background: var(--matcha);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      width: 180px;
+    }
+
+    .brew-badges strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .brew-badges span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .brew-methods {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .brew-method {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(26,26,26,0.08);
+    }
+
+    .brew-method-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--matcha);
+      font-size: 1.3rem;
+    }
+
+    .brew-method-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .brew-method-desc {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--matcha);
+      padding: 7rem 5vw;
+      overflow: hidden;
+    }
+
+    .testimonials-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+
+    .testimonials-header .section-title {
+      color: var(--white);
+      max-width: 400px;
+    }
+
+    .testimonials-header .section-eyebrow { color: rgba(255,255,255,0.45); }
+    .testimonials-header .section-eyebrow::before { background: rgba(255,255,255,0.3); }
+
+    .testimonials-rating {
+      text-align: right;
+    }
+
+    .rating-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .rating-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.3s;
+    }
+
+    .testimonial-card:hover { background: rgba(255,255,255,0.08); }
+
+    .testimonial-stars {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--blush);
+      margin-bottom: 1.2rem;
+    }
+
+    .testimonial-text {
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.9;
+    }
+
+    /* ── HOURS ── */
+    .hours-section {
+      padding: 8rem 5vw;
+      background: var(--white);
+    }
+
+    .hours-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .hours-table {
+      margin-top: 2.5rem;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(26,26,26,0.07);
+    }
+
+    .hours-row .day {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .hours-row .time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .hours-row.closed .time {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .visit-card {
+      background: var(--paper);
+      padding: 3rem;
+      border-top: 3px solid var(--matcha);
+    }
+
+    .visit-address {
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .visit-phone {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--matcha);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 2rem;
+      transition: opacity 0.3s;
+    }
+
+    .visit-phone:hover { opacity: 0.7; }
+
+    .map-box {
+      background: var(--rice);
+      border: 1px solid rgba(26,26,26,0.08);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .map-box span { font-size: 2rem; }
+
+    .map-box p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .map-box a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--matcha);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45,74,62,0.3);
+      padding-bottom: 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 3.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .footer-tagline {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-insta {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-insta:hover { color: var(--sage); }
+
+    /* ── HORIZONTAL RULE ── */
+    .thin-rule {
+      border: none;
+      border-top: 1px solid rgba(26,26,26,0.07);
+      margin: 0;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 6rem 6vw 4rem; }
+      .hero-right { display: none; }
+      .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 6vw; }
+      .about-nums { flex-direction: row; flex-wrap: wrap; gap: 2rem; }
+      .menu-header { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .brew-section { grid-template-columns: 1fr; gap: 3rem; }
+      .brew-visual { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .hours-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .menu-section, .hours-section { padding: 5rem 6vw; }
+      .testimonials { padding: 5rem 6vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!-- Tiny origami crane icon -->
+      <svg class="nav-logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6 L34 20 L20 16 L6 20 Z" fill="#2D4A3E" opacity="0.9"/>
+        <path d="M20 16 L34 20 L28 34 Z" fill="#2D4A3E" opacity="0.55"/>
+        <path d="M20 16 L6 20 L12 34 Z" fill="#7A9E8E" opacity="0.7"/>
+        <path d="M20 16 L28 34 L20 30 L12 34 Z" fill="#2D4A3E" opacity="0.35"/>
+      </svg>
+      <span class="nav-logo-text">Paper Wings</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#brew">The Brew</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Specialty Coffee · Silver Street · Leicester</p>
+      <h1 class="hero-title">
+        Where every<br>cup takes<br><em>flight</em>
+      </h1>
+      <p class="hero-desc">
+        A tranquil corner of Leicester devoted to the craft of specialty coffee.
+        Pour-overs brewed with intention, homemade bakes made with care.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">See the Menu</a>
+        <a href="#visit" class="btn-link">Find Us</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="crane-container">
+        <!-- Background circle -->
+        <div class="crane-circle"></div>
+
+        <!-- Floating decoration dots -->
+        <div class="dot" style="width:8px;height:8px;top:12%;left:18%;--dur:4.5s;--delay:0s"></div>
+        <div class="dot" style="width:5px;height:5px;top:20%;right:14%;--dur:3.8s;--delay:0.8s"></div>
+        <div class="dot" style="width:10px;height:10px;bottom:18%;left:10%;--dur:5s;--delay:1.2s"></div>
+        <div class=
