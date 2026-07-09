@@ -167,3 +167,5 @@ pip-selfcheck.json
 /.idea/dbnavigator.xml
 
 databaseinfo.env
+main2.py
+templates/main2.html
