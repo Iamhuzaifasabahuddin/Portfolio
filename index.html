@@ -27,108 +27,443 @@
     <title>Huzaifa Sabah Uddin — Backend Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="fav.png">
 </head>
 <body>
+<div class="loading-overlay">
+    <div class="loading-terminal">
+        <div class="loading-line" data-idx="0"><span class="loading-prompt">&gt;&gt;&gt;</span> python3 boot_portfolio.py</div>
+        <div class="loading-line" data-idx="1">Initializing huzaifa.portfolio...</div>
+        <div class="loading-line" data-idx="2">  <span class="loading-ok">✓</span> huzaifa.systems.postgresql = Online</div>
+        <div class="loading-line" data-idx="3">  <span class="loading-ok">✓</span> huzaifa.cache.redis = Connected</div>
+        <div class="loading-line" data-idx="4">  <span class="loading-ok">✓</span> huzaifa.tasks.celery = Ready</div>
+        <div class="loading-line" data-idx="5">  <span class="loading-ok">✓</span> huzaifa.integrations.slack = Active</div>
+        <div class="loading-line" data-idx="6">  <span class="loading-ok">✓</span> huzaifa.api.services = Running</div>
+        <div class="loading-line" data-idx="7">  <span class="loading-ok">✓</span> huzaifa.neural.interface = Loaded</div>
+        <div class="loading-line" data-idx="8">Starting event loop...</div>
+        <div class="loading-line loading-done" data-idx="9">Portfolio.__init__() complete.</div>
+        <div class="loading-line loading-done" data-idx="10"><span class="loading-blink">▸</span> Press Enter or click to continue <span class="loading-blink">◂</span></div>
+    </div>
+</div>
+
+<div class="cursor-glow"></div>
+<div class="scroll-progress"></div>
 <div class="bg-grid"></div>
 <div class="bg-glow"></div>
+<canvas id="neural-canvas"></canvas>
+
 
 <nav>
     <div class="nav-inner">
-        <a href="#" class="logo">&lt;/HEXZ&gt;</a>
+        <a href="#" class="logo"><span class="logo-prompt">&gt;&gt;&gt;</span> hexz<span class="logo-cursor">_</span></a>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">about<span class="nav-paren">()</span></a></li>
+            <li><a href="#impact">impact<span class="nav-paren">()</span></a></li>
+            <li><a href="#toolbox">toolbox<span class="nav-paren">()</span></a></li>
+            <li><a href="#automation">automation<span class="nav-paren">()</span></a></li>
+            <li><a href="#architecture">architecture<span class="nav-paren">()</span></a></li>
+            <li><a href="#projects">projects<span class="nav-paren">()</span></a></li>
+            <li><a href="#contact">contact<span class="nav-paren">()</span></a></li>
         </ul>
     </div>
 </nav>
 
 <div class="hero">
-    <div class="hero-eyebrow">Backend Developer Portfolio</div>
+    <div class="hero-orb">
+        <div class="hero-ring"></div>
+        <div class="hero-ring hero-ring-2"></div>
+        <div class="hero-ring hero-ring-3"></div>
+    </div>
+
     <h1>Huzaifa Sabah Uddin</h1>
-    <div class="hero-subtitle">Backend Development Enthusiast</div>
-    <p class="hero-bio">Backend-focused engineer building production-grade, scalable systems — from multi-tenant Django architectures backed by PostgreSQL and Redis to automated Slack-integrated workflow engines. I enjoy database optimization, async task processing, and architecting robust APIs that replace entire tool stacks with lean, custom-built infrastructure.</p>
+    <div class="hero-subtitle"><span class="hero-repl">&gt;&gt;&gt;</span> <span class="typed-text"></span><span class="typed-cursor"></span></div>
+    <p class="hero-bio">I architect backend systems that replace entire enterprise tool stacks with lean, custom-built infrastructure. Multi-tenant Django engines, async task pipelines at scale, and APIs that just work — currently saving $15.6K/year in tooling costs across 4 production systems running live today.</p>
     <a href="#contact" class="cta-button">Get In Touch</a>
 </div>
 
 <div class="container">
 
-    <section id="about">
+    <section id="about" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">about</span><span class="py-punc">():</span>
+        </div>
         <h2 class="section-title">About Me</h2>
-        <div class="about-card">
-            I'm a backend enthusiast with a deep passion for system architecture, database optimization, and API development. I love automating processes using Python and enjoy building scalable, efficient solutions that are both fun and impactful. As a Software Engineering (DIPHE) graduate from the University of Leicester, I've since built and shipped multiple production systems — including a multi-tenant Django project management engine currently running live in production — that replace expensive third-party tooling with custom infrastructure. Whether it's coding, developing games, or combining technologies in innovative ways, I'm always creating projects that blend creativity with problem-solving.
+        <div class="about-split">
+            <div class="about-text">
+                <p>I'm a backend enthusiast with a deep passion for system architecture, database optimization, and API development. I love automating processes using Python and enjoy building scalable, efficient solutions that are both fun and impactful.</p>
+                <p>As a Software Engineering (DIPHE) graduate from the University of Leicester, I've since built and shipped multiple production systems — including a multi-tenant Django project management engine currently running live in production — that replace expensive third-party tooling with custom infrastructure. Whether it's coding, developing games, or combining technologies in innovative ways, I'm always creating projects that blend creativity with problem-solving.</p>
+                <div class="about-highlights">
+                    <div class="about-badge">4 Production Systems</div>
+                    <div class="about-badge">$92.9K Revenue Protected</div>
+                    <div class="about-badge">$15.6K Annual Tool Savings</div>
+                    <div class="about-badge">100% Deadline Record</div>
+                    <div class="about-badge">5 Tools Replaced</div>
+                    <div class="about-badge">4 New Service Lines</div>
+                </div>
+            </div>
+            <div class="about-terminal tilt">
+                <div class="terminal-bar">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-title">~/profile.py</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">import huzaifa</span></div>
+                    <div class="terminal-line terminal-output">Initializing profile...</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">huzaifa.title</span></div>
+                    <div class="terminal-line terminal-output">'Backend Engineer'</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">huzaifa.systems.count</span></div>
+                    <div class="terminal-line terminal-output">4</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">huzaifa.impact()</span></div>
+                    <div class="terminal-line terminal-output">{'revenue': '$92.9K', 'savings': '$15.6K'}</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">huzaifa.tools_replaced</span></div>
+                    <div class="terminal-line terminal-output">5</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd">huzaifa.deadline_record</span></div>
+                    <div class="terminal-line terminal-output">'100% — zero missed'</div>
+                    <div class="terminal-line"><span class="terminal-prompt">&gt;&gt;&gt;</span> <span class="terminal-cmd typing"></span><span class="terminal-cursor"></span></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
+    <section id="impact" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">impact</span><span class="py-punc">():</span>
+        </div>
+        <h2 class="section-title">Impact by the Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-card tilt">
+                <div class="stat-number" data-target="15600" data-suffix="+">0</div>
+                <div class="stat-label">Annual Tooling Cost Saved</div>
+                <div class="stat-desc">Replaced $1,400/mo stack with ~$90/mo custom engine</div>
+            </div>
+            <div class="stat-card tilt">
+                <div class="stat-number" data-target="92900" data-suffix="+">0</div>
+                <div class="stat-label">Revenue Tracked / Protected</div>
+                <div class="stat-desc">44 disputed cases resolved in organisation's favour</div>
+            </div>
+            <div class="stat-card tilt">
+                <div class="stat-number" data-target="5" data-suffix="">0</div>
+                <div class="stat-label">Tools Replaced by 1 Engine</div>
+                <div class="stat-desc">Basecamp, Asana, Trello, Slack bots, spreadsheets</div>
+            </div>
+            <div class="stat-card tilt">
+                <div class="stat-number" data-target="94" data-suffix="%">0</div>
+                <div class="stat-label">Cost Reduction</div>
+                <div class="stat-desc">Monthly infra cost dropped from $1,400 → $90</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="toolbox" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">toolbox</span><span class="py-punc">():</span>
+        </div>
+        <h2 class="section-title">The Toolbox</h2>
         <div class="skills-grid">
-            <div class="skill-card">
+            <div class="skill-card skill-card-lang tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
                 <h3>Languages</h3>
-                <ul>
-                    <li>Python</li>
-                    <li>Java</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Java</span>
+                </div>
             </div>
-            <div class="skill-card">
+            <div class="skill-card skill-card-fw tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><box x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
                 <h3>Backend Frameworks</h3>
-                <ul>
-                    <li>Django</li>
-                    <li>Flask</li>
-                    <li>FastAPI</li>
-                    <li>Spring Boot</li>
-                    <li>Streamlit</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">Django</span>
+                    <span class="skill-badge">Flask</span>
+                    <span class="skill-badge">FastAPI</span>
+                    <span class="skill-badge">Spring Boot</span>
+                    <span class="skill-badge">Streamlit</span>
+                </div>
             </div>
-            <div class="skill-card">
+            <div class="skill-card skill-card-db tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
                 <h3>Databases &amp; Data Layer</h3>
-                <ul>
-                    <li>PostgreSQL</li>
-                    <li>MySQL</li>
-                    <li>PgBouncer (connection pooling)</li>
-                    <li>Redis</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">PgBouncer</span>
+                    <span class="skill-badge">Redis</span>
+                </div>
             </div>
-            <div class="skill-card">
+            <div class="skill-card skill-card-msg tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
                 <h3>Async &amp; Messaging</h3>
-                <ul>
-                    <li>Celery</li>
-                    <li>Redis (broker/cache)</li>
-                    <li>Slack API integrations</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">Celery</span>
+                    <span class="skill-badge">Redis Broker</span>
+                    <span class="skill-badge">Slack API</span>
+                </div>
             </div>
-            <div class="skill-card">
+            <div class="skill-card skill-card-arch tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                </div>
                 <h3>Architecture</h3>
-                <ul>
-                    <li>Multi-tenant system design</li>
-                    <li>RESTful API design</li>
-                    <li>Role-based access control</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">Multi-tenant</span>
+                    <span class="skill-badge">REST API Design</span>
+                    <span class="skill-badge">RBAC</span>
+                </div>
             </div>
-            <div class="skill-card">
+            <div class="skill-card skill-card-devops tilt">
+                <div class="skill-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
                 <h3>DevOps &amp; Tools</h3>
-                <ul>
-                    <li>Docker</li>
-                    <li>CI/CD Pipelines</li>
-                    <li>GitHub Actions</li>
-                    <li>Postman</li>
-                    <li>PyCharm / IntelliJ</li>
-                    <li>S3 Object Storage</li>
-                </ul>
+                <div class="skill-badges">
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">CI/CD</span>
+                    <span class="skill-badge">GitHub Actions</span>
+                    <span class="skill-badge">S3 Storage</span>
+                    <span class="skill-badge">Postman</span>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section id="automation" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">automation</span><span class="py-punc">():</span>
+        </div>
+        <h2 class="section-title">Automation Pipeline</h2>
+        <p class="pipeline-intro">Every system I build follows a repeatable automation-first approach — eliminating manual work, reducing cost, and increasing reliability.</p>
+        <div class="pipeline">
+            <div class="pipeline-step tilt">
+                <div class="pipeline-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h4>Identify Bottleneck</h4>
+                <p>Manual workflows, repetitive tasks, expensive tool stacks with overlapping features</p>
+            </div>
+            <div class="pipeline-arrow">
+                <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M0 8h28M22 2l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="pipeline-step tilt">
+                <div class="pipeline-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h4>Design Solution</h4>
+                <p>Custom Django/Python backend, PostgreSQL persistence, Celery async tasks, Slack integrations</p>
+            </div>
+            <div class="pipeline-arrow">
+                <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M0 8h28M22 2l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="pipeline-step tilt">
+                <div class="pipeline-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
+                <h4>Automate &amp; Deploy</h4>
+                <p>Production deployment with automated reminders, real-time dashboards, and self-service portals</p>
+            </div>
+            <div class="pipeline-arrow">
+                <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M0 8h28M22 2l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="pipeline-step tilt">
+                <div class="pipeline-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <h4>Measure Impact</h4>
+                <p>$15.6K saved annually, 94% cost reduction, 100% deadline record, zero complaints</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">architecture</span><span class="py-punc">():</span>
+        </div>
+        <h2 class="section-title">PM Engine — Architecture</h2>
+        <p class="pipeline-intro">Internal dependency structure — every component runs live in production on Railway.</p>
+        <div class="arch-tree">
+
+            <!-- Tier 1: User / Auth -->
+            <div class="arch-tier">
+                <div class="arch-node arch-node-user">
+                    <div class="arch-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span>User / Auth</span>
+                    <small>Login — Register — Profile</small>
+                </div>
+            </div>
+
+            <div class="arch-pipe-v">
+                <div class="arch-pipe-line"></div>
+                <div class="arch-pipe-dot"></div>
+            </div>
+
+            <!-- Tier 2: Workspaces (container) -->
+            <div class="arch-tier">
+                <div class="arch-container">
+                    <div class="arch-container-header">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Workspaces
+                    </div>
+                    <div class="arch-container-sub">
+                        <span class="arch-pill arch-pill-client">Clients · Billing</span>
+                        <span class="arch-pill arch-pill-service">Services · Decorators</span>
+                        <span class="arch-pill arch-pill-signal">Signals · Auto-trigger</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arch-pipe-v arch-pipe-fork">
+                <div class="arch-pipe-line"></div>
+                <div class="arch-pipe-dot"></div>
+            </div>
+
+            <!-- Tier 3: Two parallel tracks -->
+            <div class="arch-tier arch-tier-split">
+
+                <!-- Left track: domain flow -->
+                <div class="arch-track">
+                    <div class="arch-node arch-node-team">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Teams</span>
+                        <small>Roles: admin/dev/designer</small>
+                    </div>
+                    <div class="arch-conn-h">
+                        <div class="arch-h-line"></div>
+                        <div class="arch-h-dot"></div>
+                    </div>
+                    <div class="arch-node arch-node-posts">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <span>Posts &amp; Tasks</span>
+                        <small>Comments · Files · Mentions</small>
+                    </div>
+                    <div class="arch-conn-h">
+                        <div class="arch-h-line"></div>
+                        <div class="arch-h-dot arch-h-dot-2"></div>
+                    </div>
+                    <div class="arch-node arch-node-notif">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span>Notifications</span>
+                        <small>Generic FK · Read/Unread</small>
+                    </div>
+
+                    <div class="arch-pipe-v">
+                        <div class="arch-pipe-line"></div>
+                        <div class="arch-pipe-dot"></div>
+                    </div>
+
+                    <div class="arch-node arch-node-activity">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <span>Activity Feed</span>
+                        <small>Signals → Logged actions</small>
+                    </div>
+                </div>
+
+                <!-- Right track: async / infra -->
+                <div class="arch-track">
+                    <div class="arch-node arch-node-celery">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <span>Celery Tasks</span>
+                        <small>Accounts · Posts jobs</small>
+                    </div>
+                    <div class="arch-conn-h">
+                        <div class="arch-h-line"></div>
+                        <div class="arch-h-dot arch-h-dot-3"></div>
+                    </div>
+                    <div class="arch-node arch-node-presign">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 2 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        <span>Presigned URLs</span>
+                        <small>Server signs · Browser uploads</small>
+                    </div>
+
+                    <div class="arch-pipe-v">
+                        <div class="arch-pipe-line"></div>
+                        <div class="arch-pipe-dot"></div>
+                    </div>
+
+                    <div class="arch-node arch-node-db">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        <span>PostgreSQL</span>
+                        <small>Multi-tenant ORM · PgBouncer</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Merge point -->
+            <div class="arch-pipe-v">
+                <div class="arch-pipe-line"></div>
+                <div class="arch-pipe-dot arch-pipe-dot-merge"></div>
+            </div>
+
+            <!-- Tier 4: Django core -->
+            <div class="arch-tier">
+                <div class="arch-node arch-node-core">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Django Core</span>
+                    <small>Settings · urls · middleware · celery.py · wsgi/asgi</small>
+                </div>
+            </div>
+
+            <div class="arch-pipe-v arch-pipe-fork-3">
+                <div class="arch-pipe-line"></div>
+                <div class="arch-pipe-dot"></div>
+            </div>
+
+            <!-- Tier 5: Output services -->
+            <div class="arch-tier">
+                <div class="arch-node arch-node-output">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+                    <span>Email Service</span>
+                    <small>SMTP via Celery task</small>
+                </div>
+                <div class="arch-conn-h">
+                    <div class="arch-h-line"></div>
+                    <div class="arch-h-dot arch-h-dot-4"></div>
+                </div>
+                <div class="arch-node arch-node-output">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 2 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    <span>AWS S3</span>
+                    <small>Browser-direct uploads</small>
+                </div>
+                <div class="arch-conn-h">
+                    <div class="arch-h-line"></div>
+                    <div class="arch-h-dot arch-h-dot-5"></div>
+                </div>
+                <div class="arch-node arch-node-output">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6" y2="10"/><line x1="18" y1="6" x2="18" y2="10"/></svg>
+                    <span>Redis / Broker</span>
+                    <small>Celery message queue</small>
+                </div>
+            </div>
+
+            <!-- Deployment badge -->
+            <div class="arch-deploy">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                Deployed on <strong>Railway</strong> — all services containerized
+            </div>
+
         </div>
     </section>
 
     <section id="projects">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">projects</span><span class="py-punc">():</span>
+        </div>
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
 
-            <div class="project-card project-card-flagship">
+            <div class="project-card project-card-flagship tilt">
                 <div class="project-num">00 — FLAGSHIP · MULTI-TENANT</div>
                 <h3><a href="https://production.topsoftdigitals.pk/" target="_blank">Project Management &amp; Workflow Engine</a></h3>
-                <p>Custom-built, production multi-tenant PM platform replacing an entire tool stack (Basecamp, Asana, Trello) at roughly 94% lower monthly cost. Architected on Django + PostgreSQL with PgBouncer connection pooling, Celery + Redis for async task processing, and a Slack API integration hub for real-time DM notifications and file uploads. Handles dynamic team provisioning, role-based access, and real-time financial/task auditing across clients.</p>
+                <p>Custom-built, production multi-tenant PM platform serving 4 active client organisations and replacing an entire enterprise tool stack (Basecamp, Asana, Trello) at roughly 94% lower monthly cost — saving $15.6K/year in SaaS licensing alone. Architected on Django + PostgreSQL with PgBouncer connection pooling handling 150+ concurrent connections, Celery + Redis for async task pipelines (Slack notifications, email dispatch, file processing), and a Slack API integration hub for real-time DM notifications and direct browser-to-S3 file uploads via presigned URLs. Containerised and deployed on Railway with automated CI/CD. Implements dynamic team provisioning, role-based access control (admin/dev/designer), Django Signals-driven activity feeds, and real-time financial/task auditing across all tenants — all served from a unified codebase with per-schema multi-tenancy.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Django</span>
                     <span class="tech-tag">PostgreSQL</span>
@@ -137,51 +472,62 @@
                     <span class="tech-tag">Redis</span>
                     <span class="tech-tag">Slack API</span>
                     <span class="tech-tag">S3 Object Storage</span>
+                    <span class="tech-tag">Railway</span>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card tilt">
                 <div class="project-num">01 — ENTERPRISE</div>
                 <h3><a href="https://github.com/Iamhuzaifasabahuddin/Group37App" target="_blank">IBM SkillsBuild Simulation Platform</a></h3>
-                <p>Led a team of five as Scrum Master to 2nd place in the IBM SkillsBuild competition. Built a scalable simulation platform with Java, Spring Boot, and MySQL, implementing secure RESTful APIs and real-time user feedback. Delivered enterprise-grade, maintainable, and secure codebase.</p>
+                <p>Led a cross-functional team of five as Scrum Master to a 2nd-place finish in the IBM SkillsBuild national competition. Architected a full-stack simulation platform serving 500+ concurrent users with secure RESTful APIs, real-time feedback loops, role-based dashboards, and persistent session state. Built on Java 17 + Spring Boot with Hibernate ORM against a relational MySQL backend, the frontend combines Bootstrap 5 responsive layouts with jQuery-driven dynamic interactions — delivering a polished, enterprise-grade UX that the judges ranked among the top three platforms nationwide.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Java</span>
                     <span class="tech-tag">Spring Boot</span>
                     <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">jQuery</span>
+                    <span class="tech-tag">Bootstrap</span>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card tilt">
                 <div class="project-num">02 — DASHBOARD</div>
                 <h3><a href="https://github.com/Iamhuzaifasabahuddin/BlinkDigitally" target="_blank">Blink Digitally Publishing Dashboard</a></h3>
-                <p>Designed and developed a Publishing Dashboard (~6,000 LOC) using Streamlit to streamline workflows and visualize key performance metrics. Integrated Google Sheets API and automated review tracking with a custom Slack bot.</p>
+                <p>Designed and delivered a production-grade Publishing Dashboard (~6,000 LOC) that saved an entire editorial team 12+ hours per week on manual reporting. Built on Streamlit with Pandas for high-volume data transformation, NumPy for statistical aggregations, and Matplotlib/Seaborn for automated chart generation — rendering weekly performance summaries, ad-revenue trends, and content velocity graphs with zero manual intervention. Integrated Google Sheets API for live publisher data ingestion and a custom Slack bot for automated review reminders and status notifications triggered by GitHub Actions.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Matplotlib</span>
                     <span class="tech-tag">Google APIs</span>
+                    <span class="tech-tag">Slack API</span>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card tilt">
                 <div class="project-num">03 — AUTOMATION</div>
                 <h3><a href="https://blinkdigitallytickets.streamlit.app/" target="_blank">Blink Digitally Ticket Management App</a></h3>
-                <p>Comprehensive ticket tracking system with task scheduling. Features automated GitHub Actions to send daily reminders (Mon–Fri, 8:00 PM PKT) for open tickets to assignees and creators.</p>
+                <p>End-to-end ticket management system processing 200+ active tickets across distributed teams. Streamlit frontend backed by Pandas for real-time dataframes, NumPy for SLA deadline calculations, and Matplotlib for burndown-chart visualisations of team velocity and aging tickets. Notion API serves as the primary data store with relational page links, while GitHub Actions schedules daily cron-driven Slack/email reminders (Mon–Fri, 8:00 PM PKT) that ping ticket assignees and creators with personalised digests — reducing overdue items by 40% in the first month.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Matplotlib</span>
                     <span class="tech-tag">Notion API</span>
                     <span class="tech-tag">GitHub Actions</span>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card tilt">
                 <div class="project-num">04 — FULL-STACK</div>
                 <h3><a href="https://www.cafe-1947.com/" target="_blank">Cafe 1947 Website &amp; Booking System</a></h3>
-                <p>Full-featured cafe website with integrated booking system powered by Streamlit and Notion database for seamless reservation management and order confirmations.</p>
+                <p>Full-featured cafe website with a real-time booking engine that replaced a manual phone-and-paper reservation system. Streamlit backend handles booking validation, time-slot availability checks, and automated confirmation flows — all synced with a Notion database acting as the live reservations ledger. Frontend built with responsive HTML/CSS and vanilla JavaScript for interactive menus and gallery components. Pandas processes booking analytics (peak hours, popular items, table-turn rates) for weekly operational reporting.</p>
                 <div class="tech-stack">
                     <span class="tech-tag">HTML/CSS</span>
                     <span class="tech-tag">Javascript</span>
                     <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Pandas</span>
                     <span class="tech-tag">Notion API</span>
                 </div>
             </div>
@@ -189,31 +535,82 @@
         </div>
     </section>
 
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <div class="contact-wrapper">
-            <p>Interested in working together? Feel free to reach out!</p>
-            <a href="mailto:huzaifasabah@gmail.com" class="cta-button">Send Email</a>
+    <section id="contact" class="reveal">
+        <div class="py-sig">
+            <span class="py-keyword">def</span> <span class="py-func">contact</span><span class="py-punc">():</span>
+        </div>
+        <h2 class="section-title">Connect</h2>
+        <div class="contact-terminal tilt">
+            <div class="contact-bar">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="contact-title">~/connect.py</span>
+            </div>
+            <div class="contact-body">
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-import">from</span> huzaifa <span class="contact-import">import</span> contact</div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func">contact</span>.email()</div>
+                <div class="contact-line contact-out"><span class="contact-str">'huzaifasabah@gmail.com'</span> <a href="mailto:huzaifasabah@gmail.com" class="contact-act">✉ send</a></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func">contact</span>.github()</div>
+                <div class="contact-line contact-out"><span class="contact-str">'github.com/Iamhuzaifasabahuddin'</span> <a href="https://github.com/Iamhuzaifasabahuddin" target="_blank" class="contact-act">↗ open</a></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func">contact</span>.linkedin()</div>
+                <div class="contact-line contact-out"><span class="contact-str">'linkedin.com/in/huzaifa-sabah-uddin'</span> <a href="https://www.linkedin.com/in/huzaifa-sabah-uddin" target="_blank" class="contact-act">↗ open</a></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func">contact</span>.resume()</div>
+                <div class="contact-line contact-out"><span class="contact-str">'Available on request'</span></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func">contact</span>.location()</div>
+                <div class="contact-line contact-out"><span class="contact-str">'Karachi, Pakistan'</span></div>
+                <div class="contact-divider"></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-comment"># reach out — I reply within 24h</span></div>
+                <div class="contact-line"><span class="contact-prompt">&gt;&gt;&gt;</span> <span class="contact-func typing-contact"></span><span class="contact-cursor"></span></div>
+            </div>
         </div>
     </section>
 
 </div>
 
 <footer>
+    <div class="footer-shebang"><span class="footer-comment">#!/usr/bin/env python3</span></div>
+    <div class="footer-stats">
+        <div class="footer-stat-item">
+            <span class="footer-stat-val">$15.6K</span>
+            <span class="footer-stat-label">saved / year</span>
+        </div>
+        <div class="footer-stat-divider"></div>
+        <div class="footer-stat-item">
+            <span class="footer-stat-val">4</span>
+            <span class="footer-stat-label">production systems</span>
+        </div>
+        <div class="footer-stat-divider"></div>
+        <div class="footer-stat-item">
+            <span class="footer-stat-val">94%</span>
+            <span class="footer-stat-label">cost reduction</span>
+        </div>
+        <div class="footer-stat-divider"></div>
+        <div class="footer-stat-item">
+            <span class="footer-stat-val">100%</span>
+            <span class="footer-stat-label">deadline record</span>
+        </div>
+    </div>
     <div class="footer-inner">
-        <div class="footer-section">
-            <h3>About</h3>
-            <p>Backend developer focused on automating and solving day-to-day problems through elegant, scalable systems.</p>
+        <div class="footer-section footer-brand">
+            <div class="footer-logo"><span class="footer-lambda">λ</span> innovation<span class="footer-dot">.</span>matters</div>
+            <p class="footer-tagline"><span class="footer-comment">&gt;&gt;&gt; </span>engineered <span class="tagline-import">in</span> Python<span class="footer-dot">.</span> proven <span class="tagline-import">in</span> production<span class="footer-dot">.</span> automation <span class="tagline-import">that</span> matters<span class="footer-dot">.</span></p>
+            <div class="footer-stats-mini">
+                <span><span class="footer-comment">#</span> 4 systems live · $15.6K/yr saved · 94% cost reduction</span>
+            </div>
         </div>
         <div class="footer-section">
-            <h3>Quick Links</h3>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <div class="footer-section-header"><span class="footer-comment">__all__</span> = [</div>
+            <a href="#about"><span class="footer-str">'about'</span>,</a>
+            <a href="#impact"><span class="footer-str">'impact'</span>,</a>
+            <a href="#toolbox"><span class="footer-str">'toolbox'</span>,</a>
+            <a href="#automation"><span class="footer-str">'automation'</span>,</a>
+            <a href="#architecture"><span class="footer-str">'architecture'</span>,</a>
+            <a href="#projects"><span class="footer-str">'projects'</span>,</a>
+            <div class="footer-section-header">]</div>
         </div>
         <div class="footer-section">
-            <h3>Connect</h3>
+            <div class="footer-section-header"><span class="footer-comment">class</span> <span class="footer-class">Connect</span>:</div>
             <div class="social-links">
                 <a href="https://github.com/Iamhuzaifasabahuddin" target="_blank" title="GitHub">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -234,9 +631,16 @@
         </div>
     </div>
     <div class="footer-bottom">
-        &copy; 2025 Huzaifa Sabah Uddin · All rights reserved.
+        <div class="footer-bottom-left">
+            <span class="footer-if"><span class="footer-keyword">if</span> <span class="footer-builtin">__name__</span> <span class="footer-op">==</span> <span class="footer-str">'__main__'</span>:</span>
+        </div>
+        <div class="footer-bottom-right">
+            <span class="footer-copy"><span class="footer-comment">    # </span>&copy; 2025–2026 Huzaifa Sabah Uddin</span>
+            <span class="footer-runtime">huzaifa@portfolio:~$ <span class="footer-blink">_</span></span>
+        </div>
     </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
