@@ -195,6 +195,35 @@ document.querySelectorAll('.tilt').forEach(card => {
   draw();
 })();
 
+// === CONTACT FORM (Formspree) ===
+document.getElementById('contact-form')?.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('form-status');
+  const btn = document.getElementById('form-submit');
+  btn.disabled = true;
+  btn.textContent = 'sending...';
+  status.textContent = '';
+  try {
+    const resp = await fetch('https://formspree.io/f/xdaqlzzp', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' },
+    });
+    if (resp.ok) {
+      status.textContent = '✓ Message sent! I\'ll get back to you within 24h.';
+      form.reset();
+    } else {
+      const data = await resp.json();
+      status.textContent = data.error || '✗ Something went wrong. Try again.';
+    }
+  } catch {
+    status.textContent = '✗ Network error. Check your connection.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'message.send()';
+});
+
 // === ARCHITECTURE PACKET ANIMATION ===
 // Packets are already animated via CSS keyframes.
 // We refresh positions on scroll for any lazy-captured arch sections.
