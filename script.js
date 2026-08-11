@@ -1,6 +1,10 @@
+// === REDUCED MOTION ===
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 // === LOADING SCREEN ===
 (function boot() {
   const overlay = document.querySelector('.loading-overlay');
+  if (!overlay) return;
   const lines = document.querySelectorAll('.loading-line');
   let idx = 0;
 
@@ -25,34 +29,58 @@
     idx++;
     setTimeout(showNext, delays[idx - 1] || 200);
   }
-  showNext();
+
+  if (reduceMotion.matches) {
+    lines.forEach(l => l.classList.add('visible'));
+    document.addEventListener('click', dismiss);
+    document.addEventListener('keydown', onKey);
+  } else {
+    showNext();
+  }
 })();
 
 // === CURSOR GLOW ===
 const glow = document.querySelector('.cursor-glow');
-if (glow) {
+if (glow && !reduceMotion.matches) {
   document.addEventListener('mousemove', e => {
     glow.style.transform = `translate(${e.clientX - 150}px, ${e.clientY - 150}px)`;
-  });
+  }, { passive: true });
 }
 
-// === SMOOTH NAV ===
+// === SMOOTH NAV + MOBILE TOGGLE ===
 const navLinks = document.querySelectorAll('.nav-links a');
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    if (target) target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    const nav = document.querySelector('.nav-links');
+    const toggle = document.querySelector('.nav-toggle');
+    if (nav && toggle && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
   });
 });
 
+const navToggle = document.querySelector('.nav-toggle');
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const nav = document.querySelector('.nav-links');
+    const open = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+}
+
 // === SCROLL PROGRESS ===
 const scrollBar = document.querySelector('.scroll-progress');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  scrollBar.style.width = docHeight > 0 ? (scrollTop / docHeight) * 100 + '%' : '0';
-});
+if (scrollBar && !reduceMotion.matches) {
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollBar.style.width = docHeight > 0 ? (scrollTop / docHeight) * 100 + '%' : '0';
+  }, { passive: true });
+}
 
 // === TYPEWRITER ===
 const typedEl = document.querySelector('.typed-text');
@@ -73,15 +101,25 @@ function typeLoop() {
     setTimeout(typeLoop, 40);
   }
 }
-if (typedEl) setTimeout(typeLoop, 500);
+if (typedEl) {
+  if (reduceMotion.matches) {
+    typedEl.textContent = careers[0];
+  } else {
+    setTimeout(typeLoop, 500);
+  }
+}
 
 const cursor = document.querySelector('.typed-cursor');
-if (cursor) setInterval(() => cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0', 530);
+if (cursor && !reduceMotion.matches) setInterval(() => cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0', 530);
 
 // === COUNTER ===
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);
   const suffix = el.dataset.suffix || '';
+  if (reduceMotion.matches) {
+    el.textContent = target.toLocaleString() + suffix;
+    return;
+  }
   const duration = 2000;
   const start = performance.now();
   function update(now) {
@@ -121,26 +159,28 @@ const navObserver = new IntersectionObserver(entries => {
 sections.forEach(s => navObserver.observe(s));
 
 // === 3D TILT ===
-document.querySelectorAll('.tilt').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+if (!reduceMotion.matches) {
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+}
 
 // === NEURAL NETWORK ===
 (function neural() {
   const canvas = document.getElementById('neural-canvas');
-  if (!canvas) return;
+  if (!canvas || reduceMotion.matches) return;
   const ctx = canvas.getContext('2d');
   let nodes = [];
   const NODE_COUNT = 40;
@@ -192,9 +232,7 @@ document.querySelectorAll('.tilt').forEach(card => {
     requestAnimationFrame(draw);
   }
   draw();
-})();
-
-// === CONTACT FORM (Formspree) ===
+})();// === CONTACT FORM (Formspree) ===
 document.getElementById('contact-form')?.addEventListener('submit', async function (e) {
   e.preventDefault();
   const form = e.target;
