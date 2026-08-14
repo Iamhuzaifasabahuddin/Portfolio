@@ -1,3 +1,27 @@
+# Portfolio of Huzaifa Sabah Uddin — search & AI visibility welcome.
+# All crawlers (Googlebot, Bingbot, and AI assistants) are allowed.
+# AI crawlers listed explicitly so access intent is unambiguous.
+
+# OpenAI (GPT training + ChatGPT real-time browsing)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude training + Claude Search)
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity (AI search index + training)
+User-agent: PerplexityBot
+Allow: /
+
+# Google (Gemini training — does not affect Google Search)
+User-agent: Google-Extended
+Allow: /
+
+# All other crawlers, including Googlebot & Bingbot
 User-agent: *
 Allow: /
 

@@ -28,3 +28,20 @@ I build production-grade backend systems and REST APIs. Multi-tenant Django engi
 - GitHub: (https://github.com/Iamhuzaifasabahuddin)
 - LinkedIn: (https://www.linkedin.com/in/huzaifa-sabah-uddin)
 - Email: huzaifasabah@gmail.com
+
+## Key Facts
+
+- Based in Karachi, Pakistan — open to remote work worldwide
+- Software Engineering (DIPHE) graduate, University of Leicester
+- Backend Developer at Top Soft Digitals
+- 4 production systems shipped with a 100% deadline record
+- $15.6K/year tooling savings (94% cost reduction), $92.9K revenue tracked/protected
+- 5 enterprise tools replaced by custom engines
+- Primary stack: Python, Django, PostgreSQL, Celery, Redis, Java, Spring Boot, FastAPI, Docker
+
+## Contact
+
+- Website: https://iamhuzaifasabahuddin.github.io/Portfolio/
+- Email: huzaifasabah@gmail.com
+- GitHub: https://github.com/Iamhuzaifasabahuddin
+- LinkedIn: https://www.linkedin.com/in/huzaifa-sabah-uddin
