@@ -95,8 +95,8 @@
     {
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
-        "name": "Project Management & Workflow Engine",
-        "description": "Custom-built, production multi-tenant PM platform serving 4 active client organisations and replacing Basecamp, Asana, and Trello at roughly 94% lower monthly cost, saving $15.6K/year in SaaS licensing alone.",
+        "name": "TopsoftDigitals Connect",
+        "description": "Real-time project management platform for digital agencies tying together workspaces, clients, teams, tasks, posts and comments, with an approval-orchestrated completion workflow, WebSocket + WebPush notifications, Slack DMs, S3 uploads and a Ctrl+K command palette, replacing Basecamp, Asana, Trello and Slack bots at roughly 94% lower monthly cost, saving $15.6K/year in SaaS licensing alone.",
         "url": "https://production.topsoftdigitals.pk/",
         "applicationCategory": "Project Management",
         "operatingSystem": "Web",
@@ -273,7 +273,7 @@
         <div class="about-split">
             <div class="about-text">
                 <p>I'm a backend engineer with deep expertise in system architecture, database optimization, and REST API development. I specialize in Python/Django, microservices, and multi-tenant SaaS platforms, automating processes and building scalable solutions that are both fun and impactful.</p>
-                <p>As a Software Engineering (DIPHE) graduate from the University of Leicester, I've since built and shipped multiple production systems, including a multi-tenant Django project management engine currently running live in production, that replace expensive third-party tooling with custom infrastructure. Whether it's coding, developing games, or combining technologies in innovative ways, I'm always creating projects that blend creativity with problem-solving.</p>
+                <p>As a Software Engineering (DIPHE) graduate from the University of Leicester, I've since built and shipped multiple production systems, including <strong>TopsoftDigitals Connect</strong> &mdash; a real-time Django project management platform with WebSockets, Celery, and S3 pipelines that's currently running live in production &mdash; replacing expensive third-party tooling with custom infrastructure. Whether it's coding, developing games, or combining technologies in innovative ways, I'm always creating projects that blend creativity with problem-solving.</p>
                 <div class="about-highlights">
                     <div class="about-badge">4 Production Systems</div>
                     <div class="about-badge">$92.9K Revenue Protected</div>
@@ -632,14 +632,19 @@
 
             <div class="project-card project-card-flagship tilt">
                 <div class="project-num">flagship</div>
-                <h3><a href="https://production.topsoftdigitals.pk/" target="_blank" rel="noopener noreferrer">Project Management &amp; Workflow Engine</a></h3>
-                <p>Custom-built, production multi-tenant PM platform serving 4 active client organisations and replacing an entire enterprise tool stack (Basecamp, Asana, Trello) at roughly 94% lower monthly cost, saving $15.6K/year in SaaS licensing alone. Architected on Django + PostgreSQL with PgBouncer connection pooling handling 150+ concurrent connections, Celery + Redis for async task pipelines (Slack notifications, email dispatch, file processing), and a Slack API integration hub for real-time DM notifications and direct browser-to-S3 file uploads via presigned URLs. Containerised and deployed on Railway with automated CI/CD. Implements dynamic team provisioning, role-based access control (admin/dev/designer), Django Signals-driven activity feeds, and real-time financial/task auditing across all tenants, all served from a unified codebase with per-schema multi-tenancy.</p>
+                <h3><a href="https://production.topsoftdigitals.pk/" target="_blank" rel="noopener noreferrer">TopsoftDigitals Connect</a></h3>
+                <p>A real-time project management platform for digital agencies that ties together workspaces &rarr; clients &rarr; teams &rarr; tasks &rarr; posts &amp; comments. Built on Django 6.0 + PostgreSQL with PgBouncer connection pooling, Celery (gevent) + Redis power async pipelines for Slack DMs, WebPush (VAPID) notifications, S3 file cleanup, and an IMAP email-alert scanner. A Redis-backed Channels layer streams live WebSocket notifications and activity-feed badges, while HTMX + Bootstrap 5 deliver a snappy SPA-less UI. Features an approval-orchestrated completion workflow (pending &rarr; awaiting approval &rarr; completed), 8-type role-based permissions, direct browser-to-S3 presigned uploads, a Ctrl+K command palette with Redis-cached JSON search, and a superuser-only sales/payments ledger. Containerised and deployed on Railway behind WhiteNoise + Brotli with versioned Redis fragment caching.</p>
                 <div class="tech-stack">
-                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Django 6.0</span>
+                    <span class="tech-tag">Channels</span>
+                    <span class="tech-tag">WebSockets</span>
                     <span class="tech-tag">PostgreSQL</span>
                     <span class="tech-tag">PgBouncer</span>
                     <span class="tech-tag">Celery</span>
                     <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">HTMX</span>
+                    <span class="tech-tag">Bootstrap 5</span>
+                    <span class="tech-tag">WebPush VAPID</span>
                     <span class="tech-tag">Slack API</span>
                     <span class="tech-tag">S3 Object Storage</span>
                     <span class="tech-tag">Railway</span>
@@ -717,7 +722,7 @@
             <details class="faq-item tilt">
                 <summary class="faq-question">What is my most notable project?</summary>
                 <div class="faq-answer">
-                    <p>My flagship project is a <strong>multi-tenant Project Management Engine</strong> built on Django + PostgreSQL with PgBouncer, Celery, and Redis. It serves 4 active client organizations and replaced an entire enterprise tool stack (Basecamp, Asana, Trello, Slack bots, spreadsheets), saving <strong>$15,600/year</strong> and reducing monthly infrastructure costs from $1,400 to ~$90.</p>
+                    <p>My flagship project is <strong>TopsoftDigitals Connect</strong>, a real-time project management platform built on Django 6.0 + PostgreSQL (with PgBouncer), Channels/WebSockets, Celery, and Redis. It serves active client organizations via workspaces, teams, tasks, and an approval-orchestrated completion workflow, with Slack DMs, WebPush (VAPID), S3 uploads, and a Ctrl+K command palette &mdash; replacing an entire enterprise tool stack (Basecamp, Asana, Trello, Slack bots, spreadsheets) and saving <strong>$15,600/year</strong> at roughly 94% lower monthly infrastructure cost.</p>
                 </div>
             </details>
             <details class="faq-item tilt">
