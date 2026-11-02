@@ -9,8 +9,15 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+# OpenAI search index (ChatGPT search results)
+User-agent: OAI-SearchBot
+Allow: /
+
 # Anthropic (Claude training + Claude Search)
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
 Allow: /
 
 # Perplexity (AI search index + training)

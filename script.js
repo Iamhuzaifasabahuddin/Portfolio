@@ -7,33 +7,39 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (!overlay) return;
   const lines = document.querySelectorAll('.loading-line');
   let idx = 0;
+  let done = false;
+  let timer;
+
+  // Never gate content: show the boot sequence once per session, let any
+  // input skip it, and dismiss it automatically when it finishes.
+  try {
+    if (sessionStorage.getItem('booted') || location.hash) { overlay.classList.add('hidden'); return; }
+  } catch (e) { /* storage blocked: just play it */ }
 
   function dismiss() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
     overlay.classList.add('hidden');
-    document.removeEventListener('click', dismiss);
-    document.removeEventListener('keydown', onKey);
+    try { sessionStorage.setItem('booted', '1'); } catch (e) { /* ignore */ }
+    ['click', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.removeEventListener(ev, dismiss));
   }
 
-  function onKey(e) {
-    if (e.key === 'Enter') dismiss();
-  }
+  ['click', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.addEventListener(ev, dismiss, { passive: true }));
 
   function showNext() {
     if (idx >= lines.length) {
-      document.addEventListener('click', dismiss);
-      document.addEventListener('keydown', onKey);
+      timer = setTimeout(dismiss, 700);
       return;
     }
     lines[idx].classList.add('visible');
-    const delays = [500, 300, 200, 200, 200, 200, 200, 200, 400, 300, 600];
+    const delays = [350, 200, 140, 140, 140, 140, 140, 140, 250, 200, 400];
     idx++;
-    setTimeout(showNext, delays[idx - 1] || 200);
+    timer = setTimeout(showNext, delays[idx - 1] || 140);
   }
 
   if (reduceMotion.matches) {
-    lines.forEach(l => l.classList.add('visible'));
-    document.addEventListener('click', dismiss);
-    document.addEventListener('keydown', onKey);
+    dismiss();
   } else {
     showNext();
   }
@@ -51,9 +57,13 @@ if (glow && !reduceMotion.matches) {
 const navLinks = document.querySelectorAll('.nav-links a');
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    const target = document.querySelector(href);
+    if (!target) return;
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    // Keep the URL shareable / deep-linkable (e.g. /#projects)
+    if (history.pushState && href !== '#main') history.pushState(null, '', href);
     const nav = document.querySelector('.nav-links');
     const toggle = document.querySelector('.nav-toggle');
     if (nav && toggle && nav.classList.contains('open')) {
@@ -113,19 +123,25 @@ const cursor = document.querySelector('.typed-cursor');
 if (cursor && !reduceMotion.matches) setInterval(() => cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0', 530);
 
 // === COUNTER ===
+// The HTML already contains the final values (for crawlers, no-JS and rendered
+// snapshots). They only count up from 0 at the moment they scroll into view.
+function counterText(el, value) {
+  return (el.dataset.prefix || '') + value.toLocaleString() + (el.dataset.suffix || '');
+}
+
 function animateCounter(el) {
-  const target = parseInt(el.dataset.target);
-  const suffix = el.dataset.suffix || '';
+  const target = parseInt(el.dataset.target, 10);
   if (reduceMotion.matches) {
-    el.textContent = target.toLocaleString() + suffix;
+    el.textContent = counterText(el, target);
     return;
   }
   const duration = 2000;
   const start = performance.now();
   function update(now) {
     const progress = Math.min((now - start) / duration, 1);
-    el.textContent = Math.floor((1 - Math.pow(1 - progress, 3)) * target).toLocaleString() + suffix;
+    el.textContent = counterText(el, Math.floor((1 - Math.pow(1 - progress, 3)) * target));
     if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = counterText(el, target);
   }
   requestAnimationFrame(update);
 }
@@ -229,10 +245,17 @@ if (!reduceMotion.matches) {
         }
       }
     }
-    requestAnimationFrame(draw);
+    raf = requestAnimationFrame(draw);
   }
-  draw();
-})();// === CONTACT FORM (Formspree) ===
+  let raf = requestAnimationFrame(draw);
+  // Stop burning CPU/battery while the tab is in the background.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else raf = requestAnimationFrame(draw);
+  });
+})();
+
+// === CONTACT FORM (Formspree) ===
 document.getElementById('contact-form')?.addEventListener('submit', async function (e) {
   e.preventDefault();
   const form = e.target;
