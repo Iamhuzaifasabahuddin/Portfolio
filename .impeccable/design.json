@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T00:00:00Z",
+  "title": "Design System: Huzaifa Sabah Uddin (Hexz)",
+  "extensions": {
+    "colorMeta": {
+      "safety-yellow": { "role": "primary", "displayName": "Safety Yellow", "tonalRamp": ["#fff4c2", "#ffe066", "#ffcc00", "#d9ad00"] },
+      "stock-green": { "role": "secondary", "displayName": "Stock Green" },
+      "catalogue-paper": { "role": "neutral", "displayName": "Catalogue Paper" },
+      "catalogue-paper-shade": { "role": "neutral", "displayName": "Paper Shade" },
+      "field-white": { "role": "neutral", "displayName": "Field White" },
+      "ink": { "role": "neutral", "displayName": "Ink" },
+      "ink-secondary": { "role": "neutral", "displayName": "Ink Secondary" },
+      "error-red": { "role": "error", "displayName": "Error Red" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only; Archivo wdth 62, uppercase." },
+      "band-heading": { "displayName": "Band heading", "purpose": "h2 inside each yellow section band." },
+      "item-heading": { "displayName": "Item heading", "purpose": "Service and project names; Archivo wdth 75." },
+      "spec-label": { "displayName": "Spec label", "purpose": "Mono caps labels on spec rows and form fields." },
+      "figure": { "displayName": "Figure", "purpose": "Prices, SKUs and metrics in tabular mono." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Tab step-out, strike draw-in, count bump." },
+      { "name": "strike-draw", "value": "0.55s, staggered 0.15s", "purpose": "Hero strike lines draw left to right; disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "1100px" },
+      { "name": "tabs-to-strip", "value": "860px" },
+      { "name": "phone", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Add to Enquiry Button",
+      "kind": "button",
+      "refersTo": "button-add",
+      "description": "Adds a catalogue item to the order slip; turns green when on the slip.",
+      "html": "<button class=\"ds-btn-add\">+ Add to enquiry</button>",
+      "css": ".ds-btn-add { background:#ffcc00; color:#141414; border:2px solid #141414; border-radius:0; min-height:50px; padding:0 22px; font:750 1rem/1 Archivo, sans-serif; font-variation-settings:'wdth' 85; text-transform:uppercase; letter-spacing:.03em; cursor:pointer; } .ds-btn-add:hover { background:#ffe066; }"
+    },
+    {
+      "name": "Send Button",
+      "kind": "button",
+      "refersTo": "button-send",
+      "description": "Submits the order slip.",
+      "html": "<button class=\"ds-btn-send\">Send order slip</button>",
+      "css": ".ds-btn-send { background:#141414; color:#ffcc00; border:2px solid #141414; border-radius:0; min-height:50px; padding:0 22px; font:750 1rem/1 Archivo, sans-serif; font-variation-settings:'wdth' 85; text-transform:uppercase; letter-spacing:.03em; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Order-slip text field with a mono caps label.",
+      "html": "<label class=\"ds-label\">Email<input class=\"ds-input\" placeholder=\"you@company.com\"></label>",
+      "css": ".ds-label { display:block; font:600 .75rem 'JetBrains Mono', monospace; text-transform:uppercase; color:#44463f; } .ds-input { display:block; width:100%; margin-top:8px; background:#fbfbf8; border:1.5px solid #141414; border-radius:0; padding:12px 14px; min-height:48px; font:400 1rem Archivo, sans-serif; color:#141414; } .ds-input:focus-visible { outline:3px solid #ffcc00; box-shadow:0 0 0 5px #141414; }"
+    },
+    {
+      "name": "Thumb-index Tabs",
+      "kind": "nav",
+      "refersTo": "thumb-tab",
+      "description": "Section navigation fixed to the right edge; active tab inverts and steps out.",
+      "html": "<nav class=\"ds-tabs\"><a>Services</a><a class=\"on\">Work</a><a>Enquire <b>2</b></a></nav>",
+      "css": ".ds-tabs { display:flex; flex-direction:column; gap:4px; align-items:flex-end; } .ds-tabs a { writing-mode:vertical-rl; width:46px; padding:16px 0; display:flex; align-items:center; gap:8px; background:#ffcc00; color:#141414; border:2px solid #141414; border-right:0; font:800 .85rem Archivo, sans-serif; text-transform:uppercase; letter-spacing:.06em; } .ds-tabs a.on { background:#141414; color:#ffcc00; transform:translateX(-10px); } .ds-tabs b { writing-mode:horizontal-tb; background:#141414; color:#ffcc00; padding:3px 6px; font:600 .8rem 'JetBrains Mono', monospace; }"
+    },
+    {
+      "name": "Section Band",
+      "kind": "custom",
+      "refersTo": "section-band",
+      "description": "Yellow band that opens every section; its heading is the section title.",
+      "html": "<div class=\"ds-band\"><h2>Services</h2><span>4 items · all from $500</span></div>",
+      "css": ".ds-band { display:flex; justify-content:space-between; align-items:flex-end; background:#ffcc00; border:2px solid #141414; padding:14px 28px 10px; } .ds-band h2 { margin:0; font:850 3rem/.9 Archivo, sans-serif; font-variation-settings:'wdth' 62; text-transform:uppercase; } .ds-band span { font:600 .85rem 'JetBrains Mono', monospace; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Parts Catalogue",
+    "overview": "Hire a backend the way you order a part: numbered services with spec tables, an Add-to-enquiry control and an order slip. Cool paper, true ink, safety yellow owning whole regions, condensed Archivo and tabular mono.",
+    "keyCharacteristics": ["Safety yellow as region-scale ground", "Ruled spec tables, no shadows", "SKU column beside every heading", "Tabular mono for every figure", "Square corners only"],
+    "rules": [
+      { "name": "The Ground Rule", "body": "Yellow is a surface, never text on paper.", "section": "colors" },
+      { "name": "One Meaning for Green", "body": "Green only says live, replaced, or selected.", "section": "colors" },
+      { "name": "Mono Means Measurement", "body": "Monospace for SKUs, figures and spec labels only.", "section": "typography" },
+      { "name": "Ruled, Not Lifted", "body": "Separate with rules and colour fields, never shadows.", "section": "elevation" }
+    ],
+    "dos": ["Give every item a SKU and a spec table", "Let yellow own whole regions with ink on it", "Trace every figure to PRODUCT.md"],
+    "donts": ["No shadows, gradients, glass or rounded corners", "No yellow text on paper", "No eyebrow labels above headings", "No invented testimonials, logos or prices"]
+  }
+}

@@ -1,47 +1,38 @@
-# Huzaifa Sabah Uddin (Hexz) — Backend Developer & System Architect
+# Huzaifa Sabah Uddin (Hexz): Freelance Python & Django Backend Developer
 
-> Backend developer portfolio of Huzaifa Sabah Uddin (Hexz) — Python, Django, PostgreSQL, Celery & Redis systems that replace enterprise tool stacks, saving $15.6K/year.
+Also known as Hexz.
 
-I build production-grade backend systems and REST APIs. Multi-tenant Django engines, async Celery pipelines, microservices, and custom SaaS infrastructure that replaces expensive enterprise tools. Based in Karachi, Pakistan — open to remote work worldwide.
+> Freelance backend developer who replaces a team's patchwork of paid SaaS tools with one owned, custom system. Custom internal tools, Django and REST API backends, automation and integrations, and Django rescue work. Projects from $500. Based in Karachi, Pakistan; works remotely with clients worldwide.
 
-## Core Pages
+## Services
 
-- Portfolio Home: Complete portfolio with about, skills, impact metrics ($15.6K saved, $92.9K revenue protected, 94% cost reduction), PM Engine architecture diagram, featured projects, and contact form. (https://iamhuzaifasabahuddin.github.io/Portfolio/)
-- About: Background — Software Engineering (DIPHE) graduate from University of Leicester. Backend engineer specializing in Django, PostgreSQL, Celery, Redis, Java/Spring Boot, and multi-tenant SaaS architecture. (https://iamhuzaifasabahuddin.github.io/Portfolio/#about)
-- Impact by the Numbers: Measurable results — $15.6K annual tooling savings, $92.9K revenue tracked/protected, 5 tools replaced by 1 engine, 94% cost reduction, 100% deadline record across 4 production systems. (https://iamhuzaifasabahuddin.github.io/Portfolio/#impact)
-- The Toolbox: Technologies — Python, Java, Django, Flask, FastAPI, Spring Boot, PostgreSQL, MySQL, Redis, Celery, Docker, GitHub Actions, REST APIs. (https://iamhuzaifasabahuddin.github.io/Portfolio/#toolbox)
-- Automation Pipeline: Four-stage process — Identify Bottleneck, Design Solution, Automate & Deploy, Measure Impact. (https://iamhuzaifasabahuddin.github.io/Portfolio/#automation)
-- PM Engine Architecture: Multi-tenant Django project management system with PostgreSQL + PgBouncer, Celery + Redis, Slack API, AWS S3 presigned URLs, deployed on Railway. (https://iamhuzaifasabahuddin.github.io/Portfolio/#architecture)
-- Featured Projects: 5 projects including PM Engine (flagship), IBM SkillsBuild simulation platform, Blink Publishing Dashboard, Ticket Management System, Cafe 1947 booking system. (https://iamhuzaifasabahuddin.github.io/Portfolio/#projects)
-- FAQs: Technologies, flagship project, location, and measurable impact details. (https://iamhuzaifasabahuddin.github.io/Portfolio/#faq)
+- HX-01 Custom internal tool: one owned Django system instead of overlapping project-management apps, chat bots and spreadsheets. Workspaces, roles and permissions, tasks with approvals, client portal, Slack/email/push alerts.
+- HX-02 Django & REST API backend: multi-tenant SaaS and product backends. Django / DRF or FastAPI, PostgreSQL + PgBouncer, RBAC, Celery workers, Docker deploy.
+- HX-03 Automation & integrations: Celery and cron jobs, Slack, Notion and Google Sheets bots, automated reports and dashboards.
+- HX-04 Django rescue & scaling: query and N+1 fixes, connection pooling, Redis caching, Celery/Redis tuning, deployment hardening.
 
-## Projects
+- HX-05 Django speed audit (fixed price): $300, delivered in 3 days. Written, prioritised report of what is slowing a Django app down and how to fix it.
+- HX-06 One automation (fixed price): $500, delivered in 1 week. One workflow built and running: weekly report, reminder bot, Google Sheets or Notion sync to Slack or email.
 
-- Project Management & Workflow Engine: Multi-tenant Django PM platform serving 4 client organisations. Replaced Basecamp, Asana, Trello, Slack bots, and spreadsheets. Saves $15,600/year. Stack: Django, PostgreSQL, PgBouncer, Celery, Redis, Slack API, S3, Railway. (https://production.topsoftdigitals.pk/)
-- IBM SkillsBuild Simulation Platform: Full-stack Java 17 + Spring Boot simulation platform with Hibernate ORM and MySQL. Led team of 5 as Scrum Master to 2nd place nationally. (https://github.com/Iamhuzaifasabahuddin/Group37App)
-- Blink Digitally Publishing Dashboard: Streamlit dashboard (~6,000 LOC) saving editorial team 12+ hours/week. Pandas, NumPy, Matplotlib/Seaborn, Google Sheets API, Slack bot. (https://github.com/Iamhuzaifasabahuddin/BlinkDigitally)
-- Blink Digitally Ticket Management: End-to-end ticket system processing 200+ active tickets. Streamlit, Pandas, NumPy, Notion API, GitHub Actions cron. Reduced overdue items by 40%. (https://blinkdigitallytickets.streamlit.app/)
-- Cafe 1947 Website & Booking System: Real-time booking engine replacing manual phone/paper system. Streamlit, Notion API, HTML/CSS, JavaScript. (https://www.cafe-1947.com/)
+Pricing: projects from $500, quoted after a short conversation. A free "Stack check" calculator on the site totals what a team spends on SaaS tools. Replies to enquiries within 24 hours.
 
-## Profiles
+## Work
 
-- GitHub: (https://github.com/Iamhuzaifasabahuddin)
-- LinkedIn: (https://www.linkedin.com/in/huzaifa-sabah-uddin)
-- Email: huzaifasabah@gmail.com
+- TopsoftDigitals Connect: real-time project management platform for a digital agency. Replaced Basecamp, Asana, Trello, Slack bots and spreadsheets; tooling cost dropped from ~$1,400/mo to ~$90/mo ($15,600/year saved, 94%). Django 6.1, Channels + Redis, PostgreSQL + PgBouncer, Celery, S3, Railway. (https://production.topsoftdigitals.pk/)
+- Quillnest: his own SaaS product, a client project portal for studios and agencies: signed agreements, versioned files, live chat and client approvals, with multi-company and multi-brand workspaces. Django 6.1, Channels + Redis, PostgreSQL, Celery, S3, Railway. (https://usequillnest.com/)
+- Blink Digitally Publishing Dashboard: ~6,000-line Streamlit dashboard that removed 12+ hours a week of manual reporting. Pandas, Matplotlib, Google Sheets API, Slack bot. (https://github.com/Iamhuzaifasabahuddin/BlinkDigitally)
+- Cafe 1947 Website & Booking: online booking replacing a phone-and-paper system, synced to a Notion reservations ledger. (https://www.cafe-1947.com/)
 
-## Key Facts
+## Key facts
 
-- Based in Karachi, Pakistan — open to remote work worldwide
-- Software Engineering (DIPHE) graduate, University of Leicester
-- Backend Developer at Top Soft Digitals
-- 4 production systems shipped with a 100% deadline record
-- $15.6K/year tooling savings (94% cost reduction), $92.9K revenue tracked/protected
-- 5 enterprise tools replaced by custom engines
-- Primary stack: Python, Django, PostgreSQL, Celery, Redis, Java, Spring Boot, FastAPI, Docker
+- $15.6K/year tooling saved (94% cost reduction), $92.9K revenue tracked/protected (44 disputed cases resolved), 5 tools replaced by one engine, 4 production systems, 100% deadline record
+- Software Engineering (DipHE), University of Leicester
+- Backend developer at Top Soft Digitals; takes freelance projects
+- Stack: Python, Django, Django Channels, PostgreSQL, PgBouncer, Celery, Redis, FastAPI, Java, Spring Boot, Docker
 
 ## Contact
 
-- Website: https://iamhuzaifasabahuddin.github.io/Portfolio/
+- Website and order form: https://iamhuzaifasabahuddin.github.io/Portfolio/#enquire
 - Email: huzaifasabah@gmail.com
 - GitHub: https://github.com/Iamhuzaifasabahuddin
 - LinkedIn: https://www.linkedin.com/in/huzaifa-sabah-uddin

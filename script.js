@@ -1,289 +1,181 @@
-// === REDUCED MOTION ===
+// Huzaifa Sabah Uddin (Hexz) portfolio: order slip, stack check, section tabs, form submit.
+// The page works without this file: tabs are anchors and the form posts to Formspree.
+
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// === LOADING SCREEN ===
-(function boot() {
-  const overlay = document.querySelector('.loading-overlay');
-  if (!overlay) return;
-  const lines = document.querySelectorAll('.loading-line');
-  let idx = 0;
-  let done = false;
-  let timer;
+// === ORDER SLIP ===
+// "Add to enquiry" buttons and the form's item checkboxes share one state, keyed by SKU.
+const form = document.getElementById('order-form');
+const countEl = document.getElementById('slip-count');
+const addButtons = document.querySelectorAll('.btn-add[data-sku]');
 
-  // Never gate content: show the boot sequence once per session, let any
-  // input skip it, and dismiss it automatically when it finishes.
-  try {
-    if (sessionStorage.getItem('booted') || location.hash) { overlay.classList.add('hidden'); return; }
-  } catch (e) { /* storage blocked: just play it */ }
-
-  function dismiss() {
-    if (done) return;
-    done = true;
-    clearTimeout(timer);
-    overlay.classList.add('hidden');
-    try { sessionStorage.setItem('booted', '1'); } catch (e) { /* ignore */ }
-    ['click', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.removeEventListener(ev, dismiss));
-  }
-
-  ['click', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.addEventListener(ev, dismiss, { passive: true }));
-
-  function showNext() {
-    if (idx >= lines.length) {
-      timer = setTimeout(dismiss, 700);
-      return;
-    }
-    lines[idx].classList.add('visible');
-    const delays = [350, 200, 140, 140, 140, 140, 140, 140, 250, 200, 400];
-    idx++;
-    timer = setTimeout(showNext, delays[idx - 1] || 140);
-  }
-
-  if (reduceMotion.matches) {
-    dismiss();
-  } else {
-    showNext();
-  }
-})();
-
-// === CURSOR GLOW ===
-const glow = document.querySelector('.cursor-glow');
-if (glow && !reduceMotion.matches) {
-  document.addEventListener('mousemove', e => {
-    glow.style.transform = `translate(${e.clientX - 150}px, ${e.clientY - 150}px)`;
-  }, { passive: true });
+function checkboxFor(sku) {
+  return form ? form.querySelector(`input[name="services"][value^="${sku} "]`) : null;
 }
 
-// === SMOOTH NAV + MOBILE TOGGLE ===
-const navLinks = document.querySelectorAll('.nav-links a');
-navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    const href = link.getAttribute('href');
-    const target = document.querySelector(href);
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-    // Keep the URL shareable / deep-linkable (e.g. /#projects)
-    if (history.pushState && href !== '#main') history.pushState(null, '', href);
-    const nav = document.querySelector('.nav-links');
-    const toggle = document.querySelector('.nav-toggle');
-    if (nav && toggle && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+function syncSlip(bump) {
+  const selected = new Set();
+  form?.querySelectorAll('input[name="services"]:checked').forEach(cb => selected.add(cb.value.split(' ')[0]));
+
+  addButtons.forEach(btn => {
+    const on = selected.has(btn.dataset.sku);
+    btn.dataset.on = String(on);
+    const label = btn.querySelector('.btn-label');
+    if (!label) return;
+    if (!label.dataset.off) label.dataset.off = label.textContent;
+    label.textContent = on ? 'Remove from slip' : label.dataset.off;
+  });
+
+  if (countEl) {
+    countEl.textContent = String(selected.size);
+    const badge = countEl.closest('.tab-count');
+    if (bump && badge && !reduceMotion.matches) {
+      badge.classList.remove('bump');
+      void badge.offsetWidth; // restart the animation
+      badge.classList.add('bump');
     }
+  }
+}
+
+addButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cb = checkboxFor(btn.dataset.sku);
+    if (!cb) return;
+    cb.checked = !cb.checked;
+    syncSlip(true);
   });
 });
+form?.addEventListener('change', e => {
+  if (e.target.name === 'services') syncSlip(true);
+});
+syncSlip(false);
 
-const navToggle = document.querySelector('.nav-toggle');
-if (navToggle) {
-  navToggle.addEventListener('click', () => {
-    const nav = document.querySelector('.nav-links');
-    const open = nav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
+// === STACK CHECK ===
+// Visitor enters what each tool costs per month; totals update live and can be
+// copied onto the order slip. Nothing leaves the page until the form is sent.
+(function stackCheck() {
+  const section = document.getElementById('stack-check');
+  if (!section) return;
+  section.hidden = false;
+
+  const rows = [...section.querySelectorAll('tr[data-row]')];
+  const out = {
+    month: document.getElementById('calc-month'),
+    year: document.getElementById('calc-year'),
+    three: document.getElementById('calc-3y'),
+  };
+  const send = document.getElementById('calc-send');
+  const hint = document.getElementById('calc-hint');
+  const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+  const MARK = 'Stack check:';
+
+  function selected() {
+    return rows.map(row => {
+      const cb = row.querySelector('input[type="checkbox"]');
+      const amt = parseFloat(row.querySelector('.calc-amt').value);
+      const other = row.querySelector('.calc-other');
+      const name = row.dataset.tool || (other && other.value.trim()) || 'Other tool';
+      return { on: cb.checked, name, amount: amt > 0 ? amt : 0 };
+    }).filter(r => r.on);
+  }
+
+  function render() {
+    const items = selected();
+    const month = items.reduce((t, r) => t + r.amount, 0);
+    out.month.textContent = usd(month);
+    out.year.textContent = usd(month * 12);
+    out.three.textContent = usd(month * 36);
+    send.disabled = items.length === 0;
+    hint.textContent = items.length === 0
+      ? 'Tick at least one tool to continue.'
+      : `${items.length} tool${items.length === 1 ? '' : 's'} selected.`;
+  }
+
+  rows.forEach(row => {
+    const cb = row.querySelector('input[type="checkbox"]');
+    const amt = row.querySelector('.calc-amt');
+    const other = row.querySelector('.calc-other');
+    // Typing a cost or a name ticks the row; clearing nothing un-ticks it.
+    amt.addEventListener('input', () => { if (parseFloat(amt.value) > 0) cb.checked = true; render(); });
+    other?.addEventListener('input', () => { if (other.value.trim()) cb.checked = true; render(); });
+    cb.addEventListener('change', render);
   });
-}
 
-// === SCROLL PROGRESS ===
-const scrollBar = document.querySelector('.scroll-progress');
-if (scrollBar && !reduceMotion.matches) {
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    scrollBar.style.width = docHeight > 0 ? (scrollTop / docHeight) * 100 + '%' : '0';
-  }, { passive: true });
-}
+  send.addEventListener('click', () => {
+    const items = selected();
+    if (!items.length || !form) return;
+    const month = items.reduce((t, r) => t + r.amount, 0);
+    const list = items.map(r => r.amount ? `${r.name} ${usd(r.amount)}/mo` : r.name).join(', ');
+    const line = `${MARK} ${list}. Total ${usd(month)}/mo (${usd(month * 12)}/yr).`;
 
-// === TYPEWRITER ===
-const typedEl = document.querySelector('.typed-text');
-const careers = ['Backend Developer', 'System Architect', 'Python & Django Specialist', 'API Craftsman', 'Problem Solver'];
-let careerIdx = 0, charIdx = 0, isDeleting = false;
+    const msg = form.querySelector('textarea[name="message"]');
+    const rest = msg.value.split('\n').filter(l => !l.startsWith(MARK)).join('\n').replace(/^\n+/, '');
+    msg.value = rest ? `${line}\n\n${rest}` : `${line}\n\n`;
 
-function typeLoop() {
-  const current = careers[careerIdx];
-  if (!isDeleting) {
-    typedEl.textContent = current.substring(0, charIdx + 1);
-    charIdx++;
-    if (charIdx === current.length) { isDeleting = true; setTimeout(typeLoop, 2000); return; }
-    setTimeout(typeLoop, 80);
-  } else {
-    typedEl.textContent = current.substring(0, charIdx - 1);
-    charIdx--;
-    if (charIdx === 0) { isDeleting = false; careerIdx = (careerIdx + 1) % careers.length; }
-    setTimeout(typeLoop, 40);
-  }
-}
-if (typedEl) {
-  if (reduceMotion.matches) {
-    typedEl.textContent = careers[0];
-  } else {
-    setTimeout(typeLoop, 500);
-  }
-}
+    const hx01 = checkboxFor('HX-01');
+    if (hx01) hx01.checked = true;
+    syncSlip(true);
 
-const cursor = document.querySelector('.typed-cursor');
-if (cursor && !reduceMotion.matches) setInterval(() => cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0', 530);
-
-// === COUNTER ===
-// The HTML already contains the final values (for crawlers, no-JS and rendered
-// snapshots). They only count up from 0 at the moment they scroll into view.
-function counterText(el, value) {
-  return (el.dataset.prefix || '') + value.toLocaleString() + (el.dataset.suffix || '');
-}
-
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  if (reduceMotion.matches) {
-    el.textContent = counterText(el, target);
-    return;
-  }
-  const duration = 2000;
-  const start = performance.now();
-  function update(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    el.textContent = counterText(el, Math.floor((1 - Math.pow(1 - progress, 3)) * target));
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = counterText(el, target);
-  }
-  requestAnimationFrame(update);
-}
-
-// === INTERSECTION OBSERVER ===
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      if (entry.target.classList.contains('stat-number')) animateCounter(entry.target);
-      observer.unobserve(entry.target);
-    }
+    document.getElementById('enquire').scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    msg.focus({ preventScroll: true });
+    msg.setSelectionRange(msg.value.length, msg.value.length);
   });
-}, { threshold: 0.15 });
 
-document.querySelectorAll('.reveal, .stat-number, .project-card, .skill-card, .pipeline-step, .arch-node').forEach(el => observer.observe(el));
-
-// === ACTIVE NAV LINK ===
-const sections = document.querySelectorAll('section[id]');
-const navLinksArr = document.querySelectorAll('.nav-links a');
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinksArr.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-      });
-    }
-  });
-}, { threshold: 0.35 });
-
-sections.forEach(s => navObserver.observe(s));
-
-// === 3D TILT ===
-if (!reduceMotion.matches) {
-  document.querySelectorAll('.tilt').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    }, { passive: true });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-// === NEURAL NETWORK ===
-(function neural() {
-  const canvas = document.getElementById('neural-canvas');
-  if (!canvas || reduceMotion.matches) return;
-  const ctx = canvas.getContext('2d');
-  let nodes = [];
-  const NODE_COUNT = 40;
-  const CONN_DIST = 150;
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  for (let i = 0; i < NODE_COUNT; i++) {
-    nodes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      r: Math.random() * 1.5 + 0.5,
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i];
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(201,168,76,0.5)';
-      ctx.fill();
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = n.x - nodes[j].x;
-        const dy = n.y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONN_DIST) {
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = `rgba(201,168,76,${0.08 * (1 - dist / CONN_DIST)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-    raf = requestAnimationFrame(draw);
-  }
-  let raf = requestAnimationFrame(draw);
-  // Stop burning CPU/battery while the tab is in the background.
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else raf = requestAnimationFrame(draw);
-  });
+  render();
 })();
 
-// === CONTACT FORM (Formspree) ===
-document.getElementById('contact-form')?.addEventListener('submit', async function (e) {
+// === ACTIVE TAB ===
+const tabLinks = document.querySelectorAll('.tabs a');
+const tabTargets = [...tabLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+if ('IntersectionObserver' in window && tabTargets.length) {
+  const tabObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      tabLinks.forEach(a => {
+        const active = a.getAttribute('href') === '#' + entry.target.id;
+        a.classList.toggle('active', active);
+        if (active) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  tabTargets.forEach(t => tabObserver.observe(t));
+}
+
+// === FORM SUBMIT (Formspree, without leaving the page) ===
+form?.addEventListener('submit', async e => {
   e.preventDefault();
-  const form = e.target;
-  const status = document.getElementById('form-status');
-  const btn = document.getElementById('form-submit');
+  const status = document.getElementById('f-status');
+  const btn = document.getElementById('f-submit');
+  const original = btn.innerHTML;
   btn.disabled = true;
-  btn.textContent = 'sending...';
+  btn.textContent = 'Sending…';
   status.textContent = '';
+  status.className = 'form-status';
   try {
-    const resp = await fetch('https://formspree.io/f/xdaqlzzp', {
+    const resp = await fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
-      headers: { 'Accept': 'application/json' },
+      headers: { Accept: 'application/json' },
     });
     if (resp.ok) {
-      status.textContent = '✓ Message sent! I\'ll get back to you within 24h.';
+      status.textContent = 'Order slip received. I\'ll reply within 24 hours.';
+      status.classList.add('ok');
       form.reset();
+      syncSlip(false);
     } else {
-      const data = await resp.json();
-      status.textContent = data.error || '✗ Something went wrong. Try again.';
+      let msg = 'That didn\'t send. Check the highlighted fields, or email huzaifasabah@gmail.com.';
+      try {
+        const data = await resp.json();
+        if (data.errors?.length) msg = data.errors.map(x => x.message).join(' ');
+      } catch { /* keep default */ }
+      status.textContent = msg;
+      status.classList.add('err');
     }
   } catch {
-    status.textContent = '✗ Network error. Check your connection.';
+    status.textContent = 'No connection. Try again, or email huzaifasabah@gmail.com.';
+    status.classList.add('err');
   }
   btn.disabled = false;
-  btn.textContent = 'message.send()';
+  btn.innerHTML = original;
 });
-
-// === ARCHITECTURE PACKET ANIMATION ===
-// Packets are already animated via CSS keyframes.
-// We refresh positions on scroll for any lazy-captured arch sections.
